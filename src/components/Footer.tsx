@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowUp, ArrowUpRight, Heart, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, MapPin } from "lucide-react";
 import { SITE_DATA } from "@/data/site-data";
 
 export default function Footer() {
   const currentYear = 2026;
 
   return (
-    <footer className="bg-[#050608] border-t border-white/[0.08] pt-16 pb-12 text-zinc-400">
+    <footer className="bg-[#050608] border-t border-white/[0.08] pt-16 pb-12 text-zinc-400 overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Row */}
@@ -14,7 +14,7 @@ export default function Footer() {
           
           {/* Brand Info */}
           <div className="md:col-span-5 flex flex-col items-start">
-            <Link href="/" className="flex items-center gap-2.5 mb-4 group">
+            <Link href="/" className="flex items-center gap-2.5 mb-4 group" aria-label="Aman Singh Home">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#ff4d2e] to-[#ff7849] flex items-center justify-center font-bold text-white text-sm">
                 AS
               </div>
@@ -30,8 +30,6 @@ export default function Footer() {
             <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
               <MapPin className="w-3.5 h-3.5 text-[#ff4d2e]" />
               <span>Patna, Bihar, India</span>
-              <span className="text-zinc-600">•</span>
-              <span>25.5941° N, 85.1376° E</span>
             </div>
           </div>
 
@@ -48,7 +46,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors flex items-center gap-1.5"
                 >
-                  Think11 Sports Tech <ArrowUpRight className="w-3 h-3 text-zinc-600" />
+                  Think11 <ArrowUpRight className="w-3 h-3 text-zinc-600" />
                 </a>
               </li>
               <li>

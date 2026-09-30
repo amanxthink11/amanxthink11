@@ -41,7 +41,16 @@ export const metadata: Metadata = {
   creator: "Aman Singh",
   publisher: "Aman Singh",
   alternates: {
-    canonical: "/",
+    canonical: "https://amanxthink11.com",
+  },
+  icons: {
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon.png", type: "image/png", sizes: "180x180" },
+    ],
+    apple: [
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+    ],
   },
   openGraph: {
     title: "Aman Singh — Founder, Builder & Technology Entrepreneur",

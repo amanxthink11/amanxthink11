@@ -132,7 +132,7 @@ export default function Hero() {
                       <Sparkles className="w-3 h-3 text-[#ff7849]" />
                       Technology & Products
                     </span>
-                    <span>Patna • 25.59° N</span>
+                    <span>Patna, Bihar, India</span>
                   </div>
                 </div>
               </div>

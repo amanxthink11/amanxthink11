@@ -4,13 +4,12 @@ export interface Venture {
   tagline: string;
   role: string;
   period: string;
-  status: "Active" | "Founded";
+  status: "Active" | "Historical Foundation";
   description: string;
   longDescription: string;
   url: string;
   linkedinUrl: string;
   tags: string[];
-  metrics?: { label: string; value: string }[];
   accentColor: string;
 }
 
@@ -19,6 +18,7 @@ export interface Product {
   name: string;
   subtitle: string;
   category: "Sports Tech" | "Utility & Finance" | "Gaming & Logic" | "Analytics & SaaS";
+  status: "Published Utility" | "Published Game" | "Product Concept" | "Engineering Experiment";
   description: string;
   tags: string[];
   platform: string;
@@ -54,7 +54,6 @@ export const SITE_DATA = {
     bioShort:
       "I'm Aman Singh, a technology entrepreneur and builder from Patna, Bihar. I build companies, products and technology around ideas that solve real problems.",
     location: "Patna, Bihar, India",
-    coordinates: "25.5941° N, 85.1376° E",
     email: "contact@amanxthink11.com",
     avatar: "/aman.jpg",
     roles: [
@@ -108,12 +107,12 @@ export const SITE_DATA = {
       name: "Think11",
       tagline: "Sports technology, fantasy sports and the beginning of my founder journey.",
       role: "Founder",
-      period: "2020 – Present",
-      status: "Founded",
+      period: "Founded 2020",
+      status: "Historical Foundation",
       description:
-        "Think11 was founded in 2020 as a competitive sports-technology platform focused on fantasy gaming, interactive digital sports experiences, and high-performance match engagement.",
+        "Think11 was founded in 2020 as a competitive sports-technology platform focused on fantasy gaming, interactive digital sports experiences, and match engagement. It marked the foundational venture of my founder journey.",
       longDescription:
-        "Launched at the intersection of consumer sports passion and scalable cloud architecture. Think11 tested my capabilities in real-time user concurrency, payment gateway integrations, fraud prevention, compliance, and user retention in the demanding fantasy gaming arena.",
+        "Launched at the intersection of consumer sports interest and cloud architecture, Think11 served as an intensive learning ground in high-concurrency systems, contest mechanisms, payment gateway flows, and consumer sports user experience.",
       url: "https://www.think11.in",
       linkedinUrl: "https://www.linkedin.com/company/think11app",
       tags: ["Sports Tech", "Fantasy Sports", "High-Concurrency", "Mobile Gaming"],
@@ -127,9 +126,9 @@ export const SITE_DATA = {
       period: "2023 – Present (Active since 2021)",
       status: "Active",
       description:
-        "IND Tech Mark Private Limited is a full-cycle software development and technology solutions firm based in Patna, Bihar, engineering digital products, web/app systems, SaaS tools, and digital transformation.",
+        "IND Tech Mark Private Limited is a software development and technology solutions firm incorporated in Patna, Bihar, delivering digital products, custom web and mobile development, SaaS solutions, and technology consultancy.",
       longDescription:
-        "Formally incorporated in November 2023 after continuous development work since 2021. IND Tech Mark acts as both a commercial technology partner for enterprises and an internal venture studio launching in-house software, utilities, games, and SaaS platforms.",
+        "Formally incorporated on November 28, 2023, following ongoing technology operations since 2021. IND Tech Mark operates both as a technology services partner for businesses and as a product laboratory building specialized mobile utilities, logic games, and digital software.",
       url: "https://indtechmark.com",
       linkedinUrl: "https://www.linkedin.com/company/indtechmark",
       tags: ["Software Engineering", "Web & Mobile", "SaaS Development", "Enterprise Tech", "Patna HQ"],
@@ -145,7 +144,7 @@ export const SITE_DATA = {
       narrative:
         "Ventured into sports technology and fantasy gaming. Designed the initial platform architecture, tackled low-latency contest management, and ignited a deep passion for digital product creation.",
       type: "Venture",
-      verifiedDate: "2020",
+      verifiedDate: "2020 (Venture Foundation)",
     },
     {
       year: "2021+",
@@ -189,12 +188,13 @@ export const SITE_DATA = {
     {
       id: "thinkscore",
       name: "ThinkScore / StumpTalk",
-      subtitle: "Cricket Scoring & Match Intelligence Platform",
+      subtitle: "Cricket Scoring & Match Intelligence Concept",
       category: "Sports Tech",
+      status: "Product Concept",
       description:
-        "A comprehensive cricket scoring engine, tournament organizer, and real-time match analytics hub built for amateur leagues, academies, and live cricket enthusiasts.",
+        "A cricket scoring engine, tournament organizer, and real-time match analytics concept built for amateur leagues, academies, and live cricket enthusiasts.",
       tags: ["Live Scoring", "Cricket Analytics", "Tournament Engine", "Cloud API"],
-      platform: "Web & Mobile Platform",
+      platform: "Product Concept & Open Source Repository",
       githubUrl: "https://github.com/amanxthink11/stumptalk",
       featured: true,
     },
@@ -203,6 +203,7 @@ export const SITE_DATA = {
       name: "CardLedger",
       subtitle: "Precision Score Tracking for Card Games",
       category: "Utility & Finance",
+      status: "Published Utility",
       description:
         "A streamlined, zero-friction score ledger application for round-based card games like Call Break. Eliminates manual math errors with real-time audit trails and historical round breakdowns.",
       tags: ["Score Tracking", "Call Break", "Mobile App", "Offline-First"],
@@ -214,6 +215,7 @@ export const SITE_DATA = {
       name: "MDR Calculator",
       subtitle: "Merchant Discount Rate & Settlement Cost Tool",
       category: "Utility & Finance",
+      status: "Published Utility",
       description:
         "Specialized financial utility that enables merchants and small businesses across India to calculate exact MDR deductions, interchange charges, and net settlement revenue on digital transactions.",
       tags: ["Fintech Utility", "MDR Deductions", "Merchant Tools", "UPI / Cards"],
@@ -225,6 +227,7 @@ export const SITE_DATA = {
       name: "ArrowZen",
       subtitle: "Minimalist Directional Logic & Spatial Puzzle Game",
       category: "Gaming & Logic",
+      status: "Published Game",
       description:
         "An engaging spatial reasoning and directional logic puzzle game published on Google Play. Features progressive complexity, clean acoustics, and tactile arrow-path resolution.",
       tags: ["Logic Puzzle", "Mobile Game", "Game Mechanics", "Google Play"],
@@ -234,24 +237,26 @@ export const SITE_DATA = {
     {
       id: "ind-analytics",
       name: "IND Analytics",
-      subtitle: "Privacy-Focused Web Analytics Engine",
+      subtitle: "Privacy-Focused Web Analytics Tool",
       category: "Analytics & SaaS",
+      status: "Engineering Experiment",
       description:
-        "Lightweight, cookieless web analytics platform designed to capture essential user traffic metrics without invading visitor privacy or bloating page load times.",
-      tags: ["Web Analytics", "Privacy First", "Cookieless", "SaaS"],
-      platform: "Cloud Platform",
+        "Lightweight, cookieless web analytics experiment designed to capture essential user traffic metrics without invading visitor privacy or bloating page load times.",
+      tags: ["Web Analytics", "Privacy First", "Cookieless", "SaaS Experiment"],
+      platform: "Engineering Experiment / GitHub",
       githubUrl: "https://github.com/amanxthink11/ind-analytics",
       featured: false,
     },
     {
       id: "publicity-poster",
       name: "Publicity Poster",
-      subtitle: "AI-Powered Social Marketing Automation",
+      subtitle: "Marketing Automation Platform Experiment",
       category: "Analytics & SaaS",
+      status: "Engineering Experiment",
       description:
-        "Marketing workflow engine integrating AI generation with automated social channel syndication to help founders and brands maintain active digital presence.",
+        "Marketing workflow experiment integrating AI generation with social channel syndication to explore automated distribution pipelines for brands.",
       tags: ["AI Automation", "Social Syndication", "Content Workflow"],
-      platform: "Web Application",
+      platform: "Engineering Experiment / GitHub",
       githubUrl: "https://github.com/amanxthink11/publicity-poster",
       featured: false,
     },
@@ -261,32 +266,32 @@ export const SITE_DATA = {
     {
       title: "AI & Autonomous Workflows",
       description:
-        "Integrating intelligent automation, LLM orchestration, and smart agents into operational software pipelines.",
-      badge: "High Velocity",
+        "Integrating intelligent automation, LLM orchestration, and smart workflows into operational software pipelines.",
+      badge: "Exploration",
     },
     {
       title: "Software Products & Mobile Apps",
       description:
         "Building lightweight, high-utility Android and web applications that solve specific daily pain points.",
-      badge: "Production Ready",
+      badge: "Product Focus",
     },
     {
       title: "SaaS Infrastructure",
       description:
         "Engineering multi-tenant cloud platforms, subscription billing, and privacy-conscious analytics tools.",
-      badge: "Scalable",
+      badge: "Cloud Architecture",
     },
     {
       title: "Sports Technology & Analytics",
       description:
-        "Continuing the domain expertise started with Think11, focusing on live sports data, tournament management, and audience engagement.",
-      badge: "Core Domain",
+        "Continuing the domain interest initiated with Think11, focusing on live sports data, tournament management, and audience engagement.",
+      badge: "Domain Interest",
     },
     {
       title: "Digital Business Enablement",
       description:
-        "Empowering businesses across India through custom digital transformation via IND Tech Mark.",
-      badge: "Active Enterprise",
+        "Empowering businesses through digital services, modern web applications, and technology implementation via IND Tech Mark.",
+      badge: "Commercial Venture",
     },
   ],
 
@@ -297,7 +302,7 @@ export const SITE_DATA = {
         number: "01",
         title: "Learn by Building",
         description:
-          "The fastest way to understand a problem is to ship a solution for it. Theory informs, but code and customers teach the real lesson.",
+          "The fastest way to understand a problem is to ship a solution for it. Theory informs, but code and real feedback teach the real lesson.",
       },
       {
         number: "02",

@@ -4,7 +4,7 @@ import { GithubIcon } from "@/components/SocialIcons";
 
 export default function GithubBuilder() {
   return (
-    <section id="code" className="py-20 md:py-28 relative border-t border-white/[0.06]">
+    <section id="code" className="py-20 md:py-28 relative border-t border-white/[0.06] overflow-hidden">
       {/* Background ambient lighting */}
       <div className="ambient-glow w-[500px] h-[500px] bg-emerald-500/10 bottom-10 right-[-150px] opacity-[0.05]" />
 

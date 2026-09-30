@@ -3,7 +3,7 @@ import { SITE_DATA } from "@/data/site-data";
 
 export default function IntroAbout() {
   return (
-    <section id="about" className="py-20 md:py-28 relative border-t border-white/[0.06]">
+    <section id="about" className="py-20 md:py-28 relative border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -85,7 +85,7 @@ export default function IntroAbout() {
 
         </div>
 
-        {/* Location & Geographic Root Note */}
+        {/* Location & Geographic Root Note (strictly Patna, Bihar, India - NO coordinates) */}
         <div className="p-6 rounded-2xl bg-[#0c0e15] border border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-2.5 h-2.5 rounded-full bg-[#ff4d2e]" />
@@ -94,7 +94,7 @@ export default function IntroAbout() {
             </span>
           </div>
           <div className="text-xs font-mono text-zinc-500 flex items-center gap-4">
-            <span>Coordinates: {SITE_DATA.personal.coordinates}</span>
+            <span>Location: {SITE_DATA.personal.location}</span>
             <span>•</span>
             <span>Indian Technology Ecosystem</span>
           </div>

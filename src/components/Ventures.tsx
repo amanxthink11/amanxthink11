@@ -1,10 +1,10 @@
-import { ArrowUpRight, Building2, Globe, ShieldCheck, Sparkles, Terminal } from "lucide-react";
+import { ArrowUpRight, Building2, Globe, Sparkles } from "lucide-react";
 import { SITE_DATA } from "@/data/site-data";
 import { LinkedinIcon } from "@/components/SocialIcons";
 
 export default function Ventures() {
   return (
-    <section id="ventures" className="py-20 md:py-28 relative border-t border-white/[0.06]">
+    <section id="ventures" className="py-20 md:py-28 relative border-t border-white/[0.06] overflow-hidden">
       {/* Ambient background glow */}
       <div className="ambient-glow w-[600px] h-[600px] bg-[#ff4d2e] top-1/3 left-[-200px] opacity-[0.06]" />
 
@@ -22,7 +22,7 @@ export default function Ventures() {
             Ventures
           </h2>
           <p className="text-base sm:text-lg text-zinc-400">
-            The two flagship entities founded and led by Aman Singh—bridging consumer sports gaming and scalable enterprise technology solutions.
+            The two flagship entities founded and led by Aman Singh—the foundational journey with Think11 and active technology operations with IND Tech Mark.
           </p>
         </div>
 
@@ -57,7 +57,7 @@ export default function Ventures() {
                   </div>
 
                   <span className="founder-pill text-xs">
-                    {venture.role}
+                    {venture.status === "Historical Foundation" ? "Historical Foundation" : venture.role}
                   </span>
                 </div>
 

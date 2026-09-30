@@ -13,7 +13,7 @@ import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#08090d] text-[#f3f4f6] selection:bg-[#ff4d2e]/30 selection:text-white relative">
+    <div className="min-h-screen bg-[#08090d] text-[#f3f4f6] selection:bg-[#ff4d2e]/30 selection:text-white relative overflow-x-hidden w-full">
       {/* Top Navbar */}
       <Navbar />
 

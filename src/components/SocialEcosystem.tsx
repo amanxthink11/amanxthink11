@@ -27,7 +27,7 @@ export default function SocialEcosystem() {
   };
 
   return (
-    <section id="socials" className="py-20 md:py-28 relative border-t border-white/[0.06] bg-[#07080c]">
+    <section id="socials" className="py-20 md:py-28 relative border-t border-white/[0.06] bg-[#07080c] overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
