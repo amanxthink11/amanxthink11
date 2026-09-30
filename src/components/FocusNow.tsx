@@ -1,95 +1,109 @@
-import { Bot, CloudCog, Cpu, Gauge, Layers, Sparkles, TrendingUp, Zap } from "lucide-react";
+import { Bot, CloudCog, Cpu, Gauge, Layers, Sparkles, Smartphone, Workflow, Zap } from "lucide-react";
 import { SITE_DATA } from "@/data/site-data";
 
 export default function FocusNow() {
-  const focusItems = [
+  const focusAreas = [
     {
-      title: "AI & Autonomous Systems",
-      icon: <Bot className="w-5 h-5 text-[#ff4d2e]" />,
-      description: "Developing workflows integrating large language models, structured agents, and automation pipelines for content, marketing, and customer insights.",
-      highlight: "Active Exploration",
+      title: "AI",
+      action: "Exploring",
+      actionStyle: "bg-purple-500/10 text-purple-400 border-purple-500/30",
+      dotColor: "bg-purple-400",
+      description:
+        "Intelligent automation, structured agentic workflows, and LLM-assisted tools designed to eliminate operational bottlenecks.",
     },
     {
-      title: "SaaS & Cloud Platforms",
-      icon: <CloudCog className="w-5 h-5 text-amber-400" />,
-      description: "Engineering robust, scalable software architectures, subscription toolings, multi-tenant databases, and privacy-conscious analytics engines.",
-      highlight: "Core Architecture",
+      title: "SaaS",
+      action: "Building",
+      actionStyle: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+      dotColor: "bg-emerald-400",
+      description:
+        "Scalable multi-tenant cloud platforms, subscription billing infrastructure, and high-reliability software services.",
     },
     {
-      title: "Sports Technology & Live Data",
-      icon: <Layers className="w-5 h-5 text-emerald-400" />,
-      description: "Continuing the sports-tech domain journey from Think11 with low-latency scoring feeds, cricket tournament engines, and fan engagement apps.",
-      highlight: "Domain Expertise",
+      title: "Sports Technology",
+      action: "Experimenting",
+      actionStyle: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+      dotColor: "bg-amber-400",
+      description:
+        "Real-time cricket scoring engines, live match data pipelines, and interactive tournament engagement systems.",
     },
     {
-      title: "Mobile Apps & Utility Software",
-      icon: <Zap className="w-5 h-5 text-blue-400" />,
-      description: "Shipping pragmatic Android utilities and logic games (e.g. CardLedger, MDR Calculator, ArrowZen) to solve everyday consumer and merchant needs.",
-      highlight: "Google Play Footprint",
+      title: "Mobile Utilities",
+      action: "Building",
+      actionStyle: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
+      dotColor: "bg-emerald-400",
+      description:
+        "Pragmatic, lightweight Android tools (such as CardLedger and MDR Calculator) built to solve everyday calculation friction.",
     },
     {
-      title: "Enterprise Digital Products",
-      icon: <Gauge className="w-5 h-5 text-violet-400" />,
-      description: "Scaling client technology implementations through IND Tech Mark across web, mobile, SEO, and bespoke business infrastructure.",
-      highlight: "Commercial Operations",
+      title: "Enterprise Technology",
+      action: "Building",
+      actionStyle: "bg-[#ff4d2e]/10 text-[#ff8a65] border-[#ff4d2e]/30",
+      dotColor: "bg-[#ff4d2e]",
+      description:
+        "Modern web and app engineering, digital transformations, and scalable client systems delivered through IND Tech Mark.",
     },
     {
-      title: "Workflow Automation",
-      icon: <Sparkles className="w-5 h-5 text-rose-400" />,
-      description: "Eliminating repetitive human tasks through intelligent API bridging, webhooks, and streamlined internal tooling.",
-      highlight: "Operational Efficiency",
+      title: "Automation",
+      action: "Experimenting",
+      actionStyle: "bg-amber-500/10 text-amber-400 border-amber-500/30",
+      dotColor: "bg-amber-400",
+      description:
+        "Automated content pipelines, webhook syndication workflows, and smart distribution systems for marketing efficiency.",
     },
   ];
 
   return (
-    <section id="focus" className="py-20 md:py-28 relative border-t border-white/[0.06] bg-[#07080c] overflow-hidden">
+    <section id="focus" className="py-20 md:py-28 relative border-t border-white/[0.06] bg-[#07080c] overflow-hidden scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start max-w-2xl mb-14">
+        <div className="flex flex-col items-start max-w-2xl mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-400 mb-4">
             <span className="text-[#ff4d2e]">06</span>
             <span>/</span>
-            <span>CURRENT TRAJECTORY</span>
+            <span>TECHNICAL HORIZONS</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-4">
             What I&apos;m Building Now
           </h2>
           <p className="text-base sm:text-lg text-zinc-400">
-            A real-time overview of current technical disciplines, product experiments, and venture directions occupying my focus.
+            Current technical disciplines, software experiments, and venture exploration areas where I actively invest engineering time.
           </p>
         </div>
 
-        {/* Focus Grid */}
+        {/* Elegant Focus Areas Grid (Editorial list, not repetitive bulky cards) */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {focusItems.map((item) => (
+          {focusAreas.map((item) => (
             <div
               key={item.title}
-              className="founder-card p-6 flex flex-col justify-between group hover:border-[#ff4d2e]/30"
+              className="p-6 rounded-2xl bg-[#0c0e15] border border-white/[0.06] hover:border-white/[0.15] transition-all duration-200 flex flex-col justify-between group"
             >
               <div>
-                <div className="flex items-center justify-between gap-2 mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center">
-                    {item.icon}
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <div className="flex items-center gap-2.5">
+                    <span className={`w-2 h-2 rounded-full ${item.dotColor}`} />
+                    <h3 className="text-lg font-bold text-white group-hover:text-[#ff8a65] transition-colors">
+                      {item.title}
+                    </h3>
                   </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-mono tracking-wide uppercase bg-white/[0.04] text-zinc-400 border border-white/[0.06]">
-                    {item.highlight}
+
+                  <span
+                    className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium border ${item.actionStyle}`}
+                  >
+                    {item.action}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#ff7849] transition-colors">
-                  {item.title}
-                </h3>
-
-                <p className="text-sm text-zinc-400 leading-relaxed mb-4">
+                <p className="text-sm text-zinc-400 leading-relaxed">
                   {item.description}
                 </p>
               </div>
 
-              <div className="pt-3 border-t border-white/[0.04] flex items-center gap-2 text-xs font-mono text-zinc-500">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#ff4d2e]" />
-                <span>Active Research & Execution</span>
+              <div className="pt-4 mt-4 border-t border-white/[0.04] flex items-center justify-between text-[11px] font-mono text-zinc-600">
+                <span>Active Domain</span>
+                <span className="text-zinc-500">Aman Singh Lab</span>
               </div>
             </div>
           ))}

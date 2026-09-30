@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, Check, Copy, Mail, MapPin, Send, ExternalLink } from "lucide-react";
+import { ArrowUpRight, Check, Copy, Mail, MapPin, Send } from "lucide-react";
 import { SITE_DATA } from "@/data/site-data";
 import { LinkedinIcon } from "@/components/SocialIcons";
 
@@ -38,7 +38,7 @@ export default function ContactSection() {
   const handleOpenEmail = (e: React.FormEvent) => {
     e.preventDefault();
     const subjectText = `[${selectedTopic}] Inquiry from ${name || "Founder Contact"}`;
-    const bodyText = `Hello Aman,\n\nName: ${name || "N/A"}\nEmail: ${email || "N/A"}\nFocus: ${selectedTopic}\n\nMessage:\n${message || "Looking forward to connecting."}\n`;
+    const bodyText = `Hello Aman,\n\nName: ${name || "N/A"}\nEmail: ${email || "N/A"}\nTopic: ${selectedTopic}\n\nMessage:\n${message || "Looking forward to connecting."}\n`;
 
     const mailtoUrl = `mailto:${SITE_DATA.personal.email}?subject=${encodeURIComponent(
       subjectText
@@ -48,77 +48,96 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative border-t border-white/[0.06]">
+    <section id="connect" className="py-24 md:py-32 relative border-t border-white/[0.06] overflow-hidden scroll-mt-20">
+      {/* Target anchor for legacy #contact links */}
+      <span id="contact" className="absolute -top-24" />
+
       {/* Cinematic ambient glow */}
-      <div className="ambient-glow w-[500px] h-[500px] bg-[#ff4d2e] bottom-[-100px] left-1/2 -translate-x-1/2 opacity-[0.08]" />
+      <div className="ambient-glow w-[550px] h-[550px] bg-[#ff4d2e] bottom-[-100px] left-1/2 -translate-x-1/2 opacity-[0.09]" />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-16">
+        {/* Section Header with exact requested Headline & Supporting Text */}
+        <div className="flex flex-col items-center text-center max-w-2xl mx-auto mb-14 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-400 mb-4">
             <span className="text-[#ff4d2e]">09</span>
             <span>/</span>
             <span>GET IN TOUCH</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white mb-4">
             Let&apos;s build something.
           </h2>
 
-          <p className="text-base sm:text-lg text-zinc-300 leading-relaxed">
-            Open for strategic partnerships, product collaborations, enterprise technology inquiries, and meaningful startup conversations.
+          <p className="text-base sm:text-lg text-zinc-300 leading-relaxed max-w-xl">
+            For partnerships, technology, products, or interesting ideas.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column: Direct Touchpoints & Context */}
+          {/* Left Column: Direct Email & Copy Action */}
           <div className="lg:col-span-5 flex flex-col space-y-6">
             <div>
-              <h3 className="text-lg font-bold text-white mb-3">
-                Direct Communication
+              <h3 className="text-lg font-bold text-white mb-2">
+                Direct Touchpoint
               </h3>
               <p className="text-sm text-zinc-400 leading-relaxed mb-6">
-                Based in Patna, Bihar, India. Connecting with founders, engineering leads, and business operators across India and globally.
+                Based in Patna, Bihar, India. Always open to conversations with founders, operators, and engineering leaders.
               </p>
 
               {/* Email Card with Copy button */}
-              <div className="p-5 rounded-2xl bg-[#0e1017] border border-white/[0.08] mb-4">
-                <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider block mb-2">
-                  Official Email Address
-                </span>
+              <div className="p-5 sm:p-6 rounded-2xl bg-[#0c0e15] border border-white/[0.08] mb-4 shadow-lg">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-xs font-mono text-zinc-500 uppercase tracking-wider">
+                    Official Email
+                  </span>
+                  {copied && (
+                    <span className="text-xs text-emerald-400 font-mono flex items-center gap-1">
+                      <Check className="w-3.5 h-3.5" />
+                      Copied
+                    </span>
+                  )}
+                </div>
+
                 <div className="flex items-center justify-between gap-3">
                   <span className="text-base sm:text-lg font-mono font-medium text-white truncate">
                     {SITE_DATA.personal.email}
                   </span>
+                  
+                  {/* Requested Copy Email button */}
                   <button
                     type="button"
                     onClick={handleCopyEmail}
-                    className="p-2.5 rounded-lg bg-white/[0.06] hover:bg-[#ff4d2e] text-zinc-300 hover:text-white transition-all flex-shrink-0"
-                    title="Copy Email"
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white/[0.06] hover:bg-[#ff4d2e] text-zinc-200 hover:text-white transition-all text-xs font-medium flex-shrink-0 cursor-pointer"
+                    title="Copy email address"
                     aria-label="Copy email address"
                   >
-                    {copied ? <Check className="w-4 h-4 text-emerald-300" /> : <Copy className="w-4 h-4" />}
+                    {copied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5 text-emerald-300" />
+                        <span>Copied</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" />
+                        <span>Copy email</span>
+                      </>
+                    )}
                   </button>
                 </div>
-                {copied && (
-                  <span className="text-xs text-emerald-400 font-mono mt-2 block">
-                    ✓ Email address copied to clipboard
-                  </span>
-                )}
               </div>
 
               {/* Location Badge */}
-              <div className="p-5 rounded-2xl bg-[#0e1017] border border-white/[0.08] flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/[0.08] flex items-center justify-center text-[#ff4d2e]">
-                  <MapPin className="w-5 h-5" />
+              <div className="p-4 rounded-xl bg-[#0c0e15] border border-white/[0.06] flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-lg bg-white/[0.04] border border-white/[0.08] flex items-center justify-center text-[#ff4d2e] flex-shrink-0">
+                  <MapPin className="w-4 h-4" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-white">
+                  <div className="text-sm font-semibold text-white">
                     Patna, Bihar, India
                   </div>
-                  <div className="text-xs text-zinc-400 font-mono">
+                  <div className="text-xs text-zinc-500 font-mono">
                     Indian Standard Time (IST • UTC+5:30)
                   </div>
                 </div>
@@ -129,7 +148,7 @@ export default function ContactSection() {
                 href="https://www.linkedin.com/in/amanxthink11"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-4 rounded-xl bg-[#0e1017] border border-white/[0.08] hover:border-[#0077b5]/50 flex items-center justify-between text-xs text-zinc-300 hover:text-white transition-all group"
+                className="p-4 rounded-xl bg-[#0c0e15] border border-white/[0.06] hover:border-[#0077b5]/50 flex items-center justify-between text-xs text-zinc-300 hover:text-white transition-all group"
               >
                 <div className="flex items-center gap-2.5">
                   <LinkedinIcon className="w-4 h-4 text-[#0077b5]" />
@@ -139,7 +158,7 @@ export default function ContactSection() {
               </a>
             </div>
 
-            {/* Quick links to core companies */}
+            {/* Quick Links */}
             <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between text-xs text-zinc-400 font-mono">
               <a
                 href="https://www.think11.in"
@@ -170,15 +189,15 @@ export default function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Pre-filled Email Composer (Mailto) */}
+          {/* Right Column: Pre-filled Email Composer (Mailto Form) */}
           <div className="lg:col-span-7">
-            <div className="founder-card p-7 sm:p-9">
+            <div className="p-7 sm:p-9 rounded-2xl bg-[#0c0e15] border border-white/[0.08] shadow-xl">
               <div className="mb-6">
                 <h3 className="text-xl font-bold text-white mb-1">
                   Compose Email Note
                 </h3>
                 <p className="text-xs text-zinc-400">
-                  Select your focus topic and draft your note. Submitting will launch your email client directly.
+                  Select your topic and enter details. Submitting opens your email client directly.
                 </p>
               </div>
 
@@ -186,7 +205,7 @@ export default function ContactSection() {
                 {/* Topic Selector */}
                 <div>
                   <label className="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2.5">
-                    Discussion Focus
+                    Topic
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {topics.map((topic) => (
@@ -213,7 +232,7 @@ export default function ContactSection() {
                       htmlFor="contact-name"
                       className="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2"
                     >
-                      Your Name
+                      Name
                     </label>
                     <input
                       id="contact-name"
@@ -221,7 +240,7 @@ export default function ContactSection() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="e.g. Rahul Sharma"
-                      className="w-full px-4 py-3 rounded-xl bg-[#0a0b10] border border-white/[0.08] text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#ff4d2e] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#08090d] border border-white/[0.08] text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#ff4d2e] transition-colors"
                     />
                   </div>
 
@@ -230,7 +249,7 @@ export default function ContactSection() {
                       htmlFor="contact-email"
                       className="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2"
                     >
-                      Your Email
+                      Email
                     </label>
                     <input
                       id="contact-email"
@@ -238,7 +257,7 @@ export default function ContactSection() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="e.g. rahul@company.com"
-                      className="w-full px-4 py-3 rounded-xl bg-[#0a0b10] border border-white/[0.08] text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#ff4d2e] transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-[#08090d] border border-white/[0.08] text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#ff4d2e] transition-colors"
                     />
                   </div>
                 </div>
@@ -249,29 +268,29 @@ export default function ContactSection() {
                     htmlFor="contact-message"
                     className="block text-xs font-mono text-zinc-400 uppercase tracking-wider mb-2"
                   >
-                    Message / Context
+                    Message
                   </label>
                   <textarea
                     id="contact-message"
                     rows={4}
                     value={message}
                     onChange={(e) => setMessage(e.target.value)}
-                    placeholder="Briefly describe the collaboration, product idea, or technology opportunity..."
-                    className="w-full px-4 py-3 rounded-xl bg-[#0a0b10] border border-white/[0.08] text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#ff4d2e] transition-colors resize-none"
+                    placeholder="Describe the opportunity, technology collaboration, or product idea..."
+                    className="w-full px-4 py-3 rounded-xl bg-[#08090d] border border-white/[0.08] text-white text-sm placeholder-zinc-600 focus:outline-none focus:border-[#ff4d2e] transition-colors resize-none"
                   />
                 </div>
 
-                {/* Submit Action */}
+                {/* Explicit "Open Email" CTA button */}
                 <button
                   type="submit"
                   className="w-full py-4 rounded-xl bg-gradient-to-r from-[#ff4d2e] to-[#ff6242] text-white font-medium text-sm shadow-lg shadow-[#ff4d2e]/25 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <span>Open in Email Client</span>
-                  <Send className="w-4 h-4" />
+                  <Mail className="w-4 h-4" />
+                  <span>Open Email</span>
                 </button>
 
                 <p className="text-center text-[11px] text-zinc-500 font-mono">
-                  Opens default email software pre-addressed to contact@amanxthink11.com
+                  Transparent mailto flow pre-addressed to contact@amanxthink11.com
                 </p>
               </form>
             </div>

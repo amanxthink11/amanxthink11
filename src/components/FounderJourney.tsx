@@ -1,13 +1,61 @@
-import { CheckCircle2, Milestone, Calendar, ArrowRight } from "lucide-react";
+import { Calendar, CheckCircle2, Sparkles } from "lucide-react";
 import { SITE_DATA } from "@/data/site-data";
 
 export default function FounderJourney() {
+  const milestones = [
+    {
+      year: "2020",
+      title: "Think11 Begins",
+      role: "Founder",
+      narrative:
+        "Ventured into sports technology and fantasy sports. Architected initial platform systems, tackled real-time contest flows, and laid the foundation for venture building.",
+      verifiedDate: "2020",
+      isToday: false,
+    },
+    {
+      year: "2021+",
+      title: "Founder Journey Expands",
+      role: "Product & Engineering Lead",
+      narrative:
+        "Expanded into custom software engineering, client digital transformations, mobile applications, and assembling multidisciplinary technical teams.",
+      verifiedDate: "2021–2022",
+      isToday: false,
+    },
+    {
+      year: "2023",
+      title: "IND Tech Mark Private Limited Incorporated",
+      role: "CEO & Co-Founder",
+      narrative:
+        "Formalized technology operations under IND TECH MARK PRIVATE LIMITED (incorporated November 28, 2023, Patna). Scaled engineering services and product development.",
+      verifiedDate: "November 28, 2023",
+      isToday: false,
+    },
+    {
+      year: "2024–2026",
+      title: "Product & Technology Experimentation",
+      role: "Technology Entrepreneur",
+      narrative:
+        "Expanded digital portfolio with Android utilities (CardLedger, MDR Calc), logic games (ArrowZen) on Google Play, analytics experiments, and automation tooling.",
+      verifiedDate: "2024–2026",
+      isToday: false,
+    },
+    {
+      year: "TODAY",
+      title: "Building the Next Chapter",
+      role: "Active Founder & Builder",
+      narrative:
+        "Architecting scalable SaaS products, exploring agentic AI workflows, sports data systems, and sustainable technology ventures with long-term compounding value.",
+      verifiedDate: "Current Focus",
+      isToday: true,
+    },
+  ];
+
   return (
-    <section id="journey" className="py-20 md:py-28 relative border-t border-white/[0.06] bg-[#07080c]">
+    <section id="journey" className="py-20 md:py-28 relative border-t border-white/[0.06] bg-[#07080c] overflow-hidden scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="flex flex-col items-start max-w-2xl mb-16">
+        <div className="flex flex-col items-start max-w-2xl mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-400 mb-4">
             <span className="text-[#ff4d2e]">02</span>
             <span>/</span>
@@ -18,17 +66,17 @@ export default function FounderJourney() {
             Founder Journey
           </h2>
           <p className="text-base sm:text-lg text-zinc-400">
-            A chronological timeline of ventures, incorporations, and technology expansion. Milestones with exact legal or registration dates are marked with verified verification indicators.
+            A chronological timeline of milestones, venture foundations, formal incorporations, and continuous technology expansion.
           </p>
         </div>
 
         {/* Timeline Container */}
         <div className="relative">
-          {/* Vertical central/left line */}
-          <div className="absolute top-4 bottom-4 left-4 sm:left-1/2 sm:-translate-x-1/2 w-[1px] bg-gradient-to-b from-[#ff4d2e] via-white/[0.15] to-transparent pointer-events-none" />
+          {/* Vertical Center Line for Desktop, Left Line for Mobile */}
+          <div className="absolute top-3 bottom-3 left-4 sm:left-1/2 sm:-translate-x-1/2 w-[1px] bg-gradient-to-b from-[#ff4d2e] via-white/[0.12] to-[#ff4d2e]/40 pointer-events-none" />
 
-          <div className="space-y-12 sm:space-y-16">
-            {SITE_DATA.timeline.map((item, index) => {
+          <div className="space-y-6 sm:space-y-8">
+            {milestones.map((item, index) => {
               const isEven = index % 2 === 0;
 
               return (
@@ -39,56 +87,78 @@ export default function FounderJourney() {
                   }`}
                 >
                   {/* Timeline Node Dot */}
-                  <div className="absolute left-4 sm:left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-[#08090d] border-2 border-[#ff4d2e] flex items-center justify-center shadow-md shadow-[#ff4d2e]/30 z-20 top-0 sm:top-1.5">
-                    <div className="w-2.5 h-2.5 rounded-full bg-[#ff7849]" />
-                  </div>
-
-                  {/* Content Box */}
                   <div
-                    className={`ml-12 sm:ml-0 sm:w-1/2 ${
-                      isEven ? "sm:pl-10" : "sm:pr-10"
+                    className={`absolute left-4 sm:left-1/2 -translate-x-1/2 w-7 h-7 rounded-full flex items-center justify-center z-20 top-1 shadow-md ${
+                      item.isToday
+                        ? "bg-[#ff4d2e] border-2 border-white shadow-[#ff4d2e]/50 ring-4 ring-[#ff4d2e]/20"
+                        : "bg-[#08090d] border-2 border-[#ff4d2e] shadow-[#ff4d2e]/30"
                     }`}
                   >
-                    <div className="founder-card p-6 sm:p-7 relative group">
-                      
-                      {/* Top Bar with Year & Status */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
-                        <span className="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-400 font-mono tracking-tight">
+                    <div
+                      className={`w-2 h-2 rounded-full ${
+                        item.isToday ? "bg-white animate-pulse" : "bg-[#ff7849]"
+                      }`}
+                    />
+                  </div>
+
+                  {/* Milestone Card Content */}
+                  <div
+                    className={`ml-11 sm:ml-0 sm:w-1/2 ${
+                      isEven ? "sm:pl-8" : "sm:pr-8"
+                    }`}
+                  >
+                    <div
+                      className={`p-5 sm:p-6 rounded-2xl transition-all duration-300 relative group ${
+                        item.isToday
+                          ? "bg-[#141724] border-2 border-[#ff4d2e]/60 shadow-xl shadow-[#ff4d2e]/10"
+                          : "founder-card hover:border-white/[0.15]"
+                      }`}
+                    >
+                      {/* Top Bar with Year & Status Badge */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
+                        <span
+                          className={`text-xl sm:text-2xl font-black font-mono tracking-tight ${
+                            item.isToday
+                              ? "text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d2e] to-[#ffaa75]"
+                              : "text-white"
+                          }`}
+                        >
                           {item.year}
                         </span>
 
-                        <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-mono bg-white/[0.04] border border-white/[0.08] text-zinc-300">
-                          {item.type === "Incorporation" || item.type === "Venture" ? (
-                            <span className="flex items-center gap-1 text-[#ff8a65]">
-                              <CheckCircle2 className="w-3.5 h-3.5 text-[#ff4d2e]" />
-                              Verified Milestone
-                            </span>
-                          ) : (
-                            <span className="text-zinc-400">Narrative Era</span>
-                          )}
-                        </div>
+                        {item.isToday ? (
+                          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-mono font-semibold bg-[#ff4d2e]/20 text-[#ff8a65] border border-[#ff4d2e]/40">
+                            <Sparkles className="w-3 h-3 text-[#ff4d2e]" />
+                            CURRENT CHAPTER
+                          </span>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-mono bg-white/[0.04] text-zinc-400 border border-white/[0.06]">
+                            <CheckCircle2 className="w-3 h-3 text-[#ff4d2e]" />
+                            {item.verifiedDate}
+                          </span>
+                        )}
                       </div>
 
-                      {/* Title & Role */}
-                      <h3 className="text-xl font-bold text-white group-hover:text-[#ff7849] transition-colors mb-1">
+                      {/* Milestone Title */}
+                      <h3
+                        className={`text-lg font-bold mb-1 transition-colors ${
+                          item.isToday
+                            ? "text-white"
+                            : "text-zinc-100 group-hover:text-[#ff8a65]"
+                        }`}
+                      >
                         {item.title}
                       </h3>
-                      <div className="text-xs text-[#ff4d2e] font-medium tracking-wide uppercase font-mono mb-4">
+
+                      {/* Role Pill */}
+                      <div className="text-xs font-mono font-medium text-[#ff7849] uppercase tracking-wide mb-2.5">
                         {item.role}
                       </div>
 
-                      {/* Narrative Text */}
+                      {/* Narrative */}
                       <p className="text-sm text-zinc-300 leading-relaxed">
                         {item.narrative}
                       </p>
-
-                      {/* Verified Date Footer */}
-                      {item.verifiedDate && (
-                        <div className="mt-4 pt-3 border-t border-white/[0.05] flex items-center gap-1.5 text-xs font-mono text-zinc-500">
-                          <Calendar className="w-3.5 h-3.5" />
-                          <span>Recorded: {item.verifiedDate}</span>
-                        </div>
-                      )}
                     </div>
                   </div>
                 </div>

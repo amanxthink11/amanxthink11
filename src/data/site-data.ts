@@ -196,7 +196,7 @@ export const SITE_DATA = {
       tags: ["Live Scoring", "Cricket Analytics", "Tournament Engine", "Cloud API"],
       platform: "Product Concept & Open Source Repository",
       githubUrl: "https://github.com/amanxthink11/stumptalk",
-      featured: true,
+      featured: false,
     },
     {
       id: "cardledger",
@@ -264,34 +264,46 @@ export const SITE_DATA = {
 
   focusAreas: [
     {
-      title: "AI & Autonomous Workflows",
+      title: "AI",
+      action: "Exploring",
       description:
-        "Integrating intelligent automation, LLM orchestration, and smart workflows into operational software pipelines.",
-      badge: "Exploration",
+        "Intelligent automation, agentic workflows, and LLM-driven tooling to eliminate manual operational friction.",
+      tag: "Agentic Systems",
     },
     {
-      title: "Software Products & Mobile Apps",
+      title: "SaaS",
+      action: "Building",
       description:
-        "Building lightweight, high-utility Android and web applications that solve specific daily pain points.",
-      badge: "Product Focus",
+        "Multi-tenant architectures, subscription infrastructure, and high-reliability cloud software solutions.",
+      tag: "Cloud Platforms",
     },
     {
-      title: "SaaS Infrastructure",
+      title: "Sports Technology",
+      action: "Experimenting",
       description:
-        "Engineering multi-tenant cloud platforms, subscription billing, and privacy-conscious analytics tools.",
-      badge: "Cloud Architecture",
+        "Live tournament scoring architectures, match intelligence, and audience engagement platforms.",
+      tag: "Real-time Data",
     },
     {
-      title: "Sports Technology & Analytics",
+      title: "Mobile Utilities",
+      action: "Building",
       description:
-        "Continuing the domain interest initiated with Think11, focusing on live sports data, tournament management, and audience engagement.",
-      badge: "Domain Interest",
+        "Focused Android tools and offline-first calculators that solve specific, everyday computational problems.",
+      tag: "Android Utilities",
     },
     {
-      title: "Digital Business Enablement",
+      title: "Enterprise Technology",
+      action: "Building",
       description:
-        "Empowering businesses through digital services, modern web applications, and technology implementation via IND Tech Mark.",
-      badge: "Commercial Venture",
+        "Modern web and app engineering, digital transformations, and scalable client systems via IND Tech Mark.",
+      tag: "IND Tech Mark",
+    },
+    {
+      title: "Automation",
+      action: "Experimenting",
+      description:
+        "Automated distribution pipelines, social marketing engines, and webhook-driven orchestration workflows.",
+      tag: "Workflow Engine",
     },
   ],
 

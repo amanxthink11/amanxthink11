@@ -1,103 +1,79 @@
-import { Compass, Cpu, Flame, Layers, Rocket, ShieldCheck } from "lucide-react";
 import { SITE_DATA } from "@/data/site-data";
 
 export default function IntroAbout() {
+  const principles = [
+    {
+      number: "01",
+      title: "BUILD WITH PURPOSE",
+      description:
+        "Every venture and line of code begins with a clear friction point. We build solutions designed to deliver immediate, practical value.",
+    },
+    {
+      number: "02",
+      title: "LEARN BY BUILDING",
+      description:
+        "Theory only goes so far. Real product insight comes from shipping, deploying to real users, observing bottlenecks, and iterating rapidly.",
+    },
+    {
+      number: "03",
+      title: "THINK LONG TERM",
+      description:
+        "Sustainable businesses compound over time. We engineer software architectures and commercial relationships built for enduring reliability.",
+    },
+  ];
+
   return (
-    <section id="about" className="py-20 md:py-28 relative border-t border-white/[0.06] overflow-hidden">
+    <section id="about" className="py-20 md:py-28 relative border-t border-white/[0.06] overflow-hidden scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Section Header */}
-        <div className="flex flex-col items-start max-w-2xl mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-400 mb-4">
-            <span className="text-[#ff4d2e]">01</span>
-            <span>/</span>
-            <span>PHILOSOPHY & IDENTITY</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
-            Founder. Builder. <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d2e] to-[#ff8a3d]">
-              Problem Solver.
-            </span>
-          </h2>
-
-          <p className="text-base sm:text-lg text-zinc-300 leading-relaxed">
-            I don&apos;t just manage projects from the sidelines—I build them. My journey as an entrepreneur started with an obsession to understand how complex systems work and how thoughtful software can eliminate friction in the physical and digital world.
-          </p>
+        {/* Section Tag */}
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/[0.08] text-xs font-mono text-zinc-400 mb-8">
+          <span className="text-[#ff4d2e]">01</span>
+          <span>/</span>
+          <span>ABOUT & PERSPECTIVE</span>
         </div>
 
-        {/* Core Narrative Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          
-          {/* Card 1: Entrepreneurship & Ventures */}
-          <div className="founder-card p-6 md:p-8 flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-[#ff4d2e]/10 border border-[#ff4d2e]/30 flex items-center justify-center text-[#ff4d2e] mb-6">
-                <Rocket className="w-5 h-5" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">
-                Entrepreneurship First
-              </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Founding Think11 in 2020 taught me the ground realities of running a consumer product: real-time concurrency, customer trust, operational resilience, and relentless market execution.
-              </p>
-            </div>
-            <div className="pt-6 mt-6 border-t border-white/[0.06] text-xs font-mono text-zinc-500">
-              Venture Building • Patna HQ
-            </div>
+        {/* Large Editorial Statement & Strong Paragraph */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start mb-16">
+          <div className="lg:col-span-6">
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1]">
+              Founder. Builder. <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ff4d2e] via-[#ff7849] to-[#ffaa75]">
+                Problem Solver.
+              </span>
+            </h2>
           </div>
 
-          {/* Card 2: Technology & Product Depth */}
-          <div className="founder-card p-6 md:p-8 flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-6">
-                <Cpu className="w-5 h-5" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">
-                Learning by Building
-              </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                I believe theory only goes so far. Every line of code, database schema, and mobile UI in my products is an experiment to discover what works, what scales, and what creates real utility for users.
-              </p>
-            </div>
-            <div className="pt-6 mt-6 border-t border-white/[0.06] text-xs font-mono text-zinc-500">
-              Rapid Prototyping • Code Craft
+          <div className="lg:col-span-6 flex flex-col justify-center pt-2">
+            <p className="text-lg sm:text-xl text-zinc-300 leading-relaxed font-normal">
+              I build at the intersection of venture leadership and engineering execution. From launching Think11 in 2020 as a competitive sports-technology platform to incorporating IND Tech Mark in 2023 for software solutions and product development, my work focuses on turning ideas into resilient, production-ready systems that solve tangible problems.
+            </p>
+
+            <div className="mt-6 flex items-center gap-3 text-xs font-mono text-zinc-400">
+              <span className="w-2 h-2 rounded-full bg-[#ff4d2e]" />
+              <span>Based in Patna, Bihar, India — Building for Global Standards</span>
             </div>
           </div>
-
-          {/* Card 3: Long-term Thinking */}
-          <div className="founder-card p-6 md:p-8 flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-6">
-                <Compass className="w-5 h-5" />
-              </div>
-              <h3 className="text-xl font-bold text-white mb-3">
-                Long-Term Compounding
-              </h3>
-              <p className="text-sm text-zinc-400 leading-relaxed">
-                Incorporating IND Tech Mark in 2023 was a step toward institutionalizing high-quality technology solutions. We engineer sustainable digital products and software infrastructure built for endurance.
-              </p>
-            </div>
-            <div className="pt-6 mt-6 border-t border-white/[0.06] text-xs font-mono text-zinc-500">
-              Sustainable Value • Enterprise Tech
-            </div>
-          </div>
-
         </div>
 
-        {/* Location & Geographic Root Note (strictly Patna, Bihar, India - NO coordinates) */}
-        <div className="p-6 rounded-2xl bg-[#0c0e15] border border-white/[0.06] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#ff4d2e]" />
-            <span className="text-sm font-medium text-zinc-200">
-              Anchored in Patna, Bihar — Engineering for Global Standards
-            </span>
-          </div>
-          <div className="text-xs font-mono text-zinc-500 flex items-center gap-4">
-            <span>Location: {SITE_DATA.personal.location}</span>
-            <span>•</span>
-            <span>Indian Technology Ecosystem</span>
-          </div>
+        {/* 3 Compact Editorial Principles (Editorial layout, not dashboard cards) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-10 border-t border-white/[0.08]">
+          {principles.map((item) => (
+            <div key={item.number} className="flex flex-col group">
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-xs font-mono font-bold text-[#ff4d2e]">
+                  {item.number}
+                </span>
+                <span className="w-8 h-[1px] bg-white/20 group-hover:bg-[#ff4d2e] transition-colors" />
+                <h3 className="text-sm font-mono font-bold tracking-wider uppercase text-white group-hover:text-[#ff8a65] transition-colors">
+                  {item.title}
+                </h3>
+              </div>
+              <p className="text-sm text-zinc-400 leading-relaxed pl-7">
+                {item.description}
+              </p>
+            </div>
+          ))}
         </div>
 
       </div>

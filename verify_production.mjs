@@ -18,6 +18,15 @@ const REQUIRED_EXTERNAL_LINKS = [
   "https://indtechmark.com",
 ];
 
+const REQUIRED_SECTION_IDS = [
+  "about",
+  "ventures",
+  "work",
+  "journey",
+  "focus",
+  "connect",
+];
+
 async function runProductionAudit() {
   const browser = await chromium.launch();
   const context = await browser.newContext();
@@ -59,7 +68,14 @@ async function runProductionAudit() {
   );
   console.log(`Canonical URL: ${canonical} (Expected: https://amanxthink11.com)`);
 
-  // 2. Check JSON-LD Structured Data
+  // 2. Check Section IDs
+  console.log("\n--> Verifying all required single-page section IDs...");
+  for (const id of REQUIRED_SECTION_IDS) {
+    const el = await page.$(`#${id}`);
+    console.log(`  Section #${id} exists: ${el !== null}`);
+  }
+
+  // 3. Check JSON-LD Structured Data
   const jsonLd = await page.$eval(
     'script[type="application/ld+json"]',
     (el) => el.innerHTML
@@ -75,7 +91,7 @@ async function runProductionAudit() {
     bodyText.includes("25.59° N");
   console.log(`[PRIVACY AUDIT] Any exact coordinates leaked in page text: ${hasCoordinates} (Must be false)`);
 
-  // 3. Check External Social and Business Links
+  // 4. Check External Social and Business Links
   console.log("\n--> Checking external links presence and security attributes...");
   for (const url of REQUIRED_EXTERNAL_LINKS) {
     const linkEl = await page.$(`a[href="${url}"]`);
@@ -88,13 +104,47 @@ async function runProductionAudit() {
     }
   }
 
-  // 4. Test Viewports and Capture Screenshots
+  // 5. Test Copy Email Button
+  console.log("\n--> Testing interactive elements (Email Copy Button)...");
+  const copyBtn = await page.$('button[title="Copy email address"]');
+  if (copyBtn) {
+    await copyBtn.click({ force: true });
+    await page.waitForTimeout(200);
+    const copyConfirmEl = await page.$('text=Copied');
+    console.log(`  ✓ Copy button confirmation visible: ${copyConfirmEl !== null}`);
+  }
+
+  // 6. Test Form Topic Selection
+  console.log("\n--> Testing form topic pills...");
+  const topicBtn = await page.$('button:has-text("Technology")');
+  if (topicBtn) {
+    await topicBtn.click();
+    console.log(`  ✓ Selected "Technology" topic pill`);
+  }
+
+  // 7. Test Mobile Navigation Drawer on 390x844
+  console.log("\n--> Testing mobile navigation drawer (390x844)...");
+  await page.setViewportSize({ width: 390, height: 844 });
+  const menuBtn = await page.$('button[aria-label="Open menu"]');
+  if (menuBtn) {
+    await menuBtn.click();
+    await page.waitForTimeout(200);
+    const drawerOpen = await page.$('nav[aria-label="Mobile navigation"]');
+    console.log(`  ✓ Mobile menu drawer opened: ${drawerOpen !== null}`);
+
+    // Test Esc key closing
+    await page.keyboard.press("Escape");
+    await page.waitForTimeout(200);
+    const drawerClosed = (await page.$('nav[aria-label="Mobile navigation"]')) === null;
+    console.log(`  ✓ Mobile menu drawer closed with Escape key: ${drawerClosed}`);
+  }
+
+  // 8. Capture Viewport Screenshots and verify overflow
   console.log("\n--> Capturing screenshots across all 5 standard viewports...");
   for (const vp of VIEWPORTS) {
     await page.setViewportSize({ width: vp.width, height: vp.height });
-    await page.waitForTimeout(200);
+    await page.waitForTimeout(250);
 
-    // Check horizontal scroll / overflow
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
     const hasHorizontalOverflow = scrollWidth > clientWidth;
@@ -109,23 +159,13 @@ async function runProductionAudit() {
     });
   }
 
-  // 5. Test Copy Email Button
-  console.log("\n--> Testing interactive elements (Email Copy Button)...");
-  const copyBtn = await page.$('button[title="Copy Email"]');
-  if (copyBtn) {
-    await copyBtn.click({ force: true });
-    await page.waitForTimeout(300);
-    const copyConfirmEl = await page.$('text=copied to clipboard');
-    console.log(`  ✓ Copy button confirmation visible: ${copyConfirmEl !== null}`);
-  }
-
-  // 6. Test Form Topic Selection
-  console.log("\n--> Testing form topic pills...");
-  const topicBtn = await page.$('button:has-text("Technology")');
-  if (topicBtn) {
-    await topicBtn.click();
-    console.log(`  ✓ Selected "Technology" topic pill`);
-  }
+  // Capture full page screenshot at 1440x900 to inspect complete page layout
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.waitForTimeout(200);
+  await page.screenshot({
+    path: `audit_fullpage_1440.png`,
+    fullPage: true,
+  });
 
   // Final Summary
   console.log("\n==========================================");
