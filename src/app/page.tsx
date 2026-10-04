@@ -1,56 +1,56 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import IntroAbout from "@/components/IntroAbout";
-import FounderJourney from "@/components/FounderJourney";
-import Ventures from "@/components/Ventures";
-import SelectedProducts from "@/components/SelectedProducts";
-import GithubBuilder from "@/components/GithubBuilder";
-import FocusNow from "@/components/FocusNow";
-import Philosophy from "@/components/Philosophy";
-import SocialEcosystem from "@/components/SocialEcosystem";
-import ContactSection from "@/components/ContactSection";
+import Chapter01Beginning from "@/components/Chapter01Beginning";
+import Chapter02FirstBet from "@/components/Chapter02FirstBet";
+import Chapter03BuildingAgain from "@/components/Chapter03BuildingAgain";
+import Chapter04IdeasToProducts from "@/components/Chapter04IdeasToProducts";
+import Chapter05BuildingInPublic from "@/components/Chapter05BuildingInPublic";
+import Chapter06ThingsIveLearned from "@/components/Chapter06ThingsIveLearned";
+import Chapter07WhatImBuildingNow from "@/components/Chapter07WhatImBuildingNow";
+import Chapter08TheRoadAhead from "@/components/Chapter08TheRoadAhead";
+import Chapter09MessageToVisitor from "@/components/Chapter09MessageToVisitor";
+import Chapter10LetsConnect from "@/components/Chapter10LetsConnect";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-[#08090d] text-[#f3f4f6] selection:bg-[#ff4d2e]/30 selection:text-white relative overflow-x-hidden w-full">
-      {/* Top Navbar */}
+      {/* Chapter-Aware Navigation */}
       <Navbar />
 
-      {/* Main Content Layout */}
+      {/* 10 Storytelling Chapters */}
       <main id="main-content" tabIndex={-1} className="focus:outline-none">
-        {/* 1. Hero */}
-        <Hero />
+        {/* 01 — THE BEGINNING */}
+        <Chapter01Beginning />
 
-        {/* 2. Intro / About */}
-        <IntroAbout />
+        {/* 02 — THE FIRST BET (Think11 · 2020) */}
+        <Chapter02FirstBet />
 
-        {/* 3. Founder Journey */}
-        <FounderJourney />
+        {/* 03 — BUILDING AGAIN (IND Tech Mark) */}
+        <Chapter03BuildingAgain />
 
-        {/* 4. Ventures */}
-        <Ventures />
+        {/* 04 — FROM IDEAS TO PRODUCTS */}
+        <Chapter04IdeasToProducts />
 
-        {/* 5. Selected Products */}
-        <SelectedProducts />
+        {/* 05 — BUILDING IN PUBLIC (GitHub) */}
+        <Chapter05BuildingInPublic />
 
-        {/* 6. GitHub / Builder */}
-        <GithubBuilder />
+        {/* 06 — THINGS I'VE LEARNED (Founder Principles) */}
+        <Chapter06ThingsIveLearned />
 
-        {/* 7. What I'm Building Now */}
-        <FocusNow />
+        {/* 07 — WHAT I'M BUILDING NOW */}
+        <Chapter07WhatImBuildingNow />
 
-        {/* 8. Philosophy */}
-        <Philosophy />
+        {/* 08 — THE ROAD AHEAD */}
+        <Chapter08TheRoadAhead />
 
-        {/* 9. Social Ecosystem */}
-        <SocialEcosystem />
+        {/* 09 — A MESSAGE TO THE VISITOR */}
+        <Chapter09MessageToVisitor />
 
-        {/* 10. Contact */}
-        <ContactSection />
+        {/* 10 — LET'S CONNECT */}
+        <Chapter10LetsConnect />
       </main>
 
-      {/* 11. Footer */}
+      {/* Story Footer */}
       <Footer />
     </div>
   );
