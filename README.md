@@ -17,11 +17,11 @@
 <p align="center">
   <img src="https://komarev.com/ghpvc/?username=amanxthink11&style=flat-square&color=F59E0B&label=PROFILE+VIEWS" alt="Profile views" />
   <img src="https://img.shields.io/github/followers/amanxthink11?style=flat-square&color=F59E0B&label=FOLLOWERS" alt="GitHub followers" />
-  <img src="https://img.shields.io/github/repos/amanxthink11?style=flat-square&color=F59E0B&label=PUBLIC+REPOS" alt="Public repositories" />
+  <img src="https://img.shields.io/github/repo-count/amanxthink11?style=flat-square&color=F59E0B&label=PUBLIC+REPOS" alt="Public repositories" />
 </p>
 
 About Me
-I'm a founder and hands-on product builder from Patna, Bihar, India. I enjoy taking ideas from problem discovery to usable software, with a focus on business tools, developer experience, automation, and privacy-conscious products.
+I'm a founder and hands-on product builder from Patna, Bihar, India. I enjoy turning ideas into usable software, especially business tools, developer utilities, automation, and privacy-conscious products.
 - 🚀 I build and ship practical products, not just demos.
 - 🧰 Interested in open source, AI-assisted workflows, and developer tools.
 - 🔐 Care about security, privacy, maintainability, and clear documentation.
@@ -37,7 +37,7 @@ Featured Projects
     </td>
     <td width="50%" valign="top">
       <h3><a href="https://github.com/amanxthink11/billzo">🧾 Billzo</a></h3>
-      <p>Offline-first billing and business management, with invoices, purchases, expenses, inventory, accounting, GST reporting, and local backup/restore.</p>
+      <p>Offline-first billing and business management for invoices, purchases, expenses, inventory, accounting, GST reporting, and local backup/restore.</p>
       <p><strong>Stack:</strong> Flutter · Dart · SQLite · Riverpod</p>
       <p><a href="https://billzo.cloud">Website ↗</a></p>
     </td>
@@ -53,26 +53,30 @@ Project status and feature availability can change; check each repository for th
 
 GitHub Analytics
 <p align="center">
-  <img height="170" src="https://github-readme-stats.vercel.app/api?username=amanxthink11&show_icons=true&include_all_commits=true&hide_border=true&rank_icon=github&theme=transparent&title_color=F59E0B&icon_color=F59E0B" alt="Aman's GitHub statistics" />
-  <img height="170" src="https://github-readme-stats.vercel.app/api/top-langs/?username=amanxthink11&layout=compact&langs_count=8&hide_border=true&theme=transparent&title_color=F59E0B" alt="Most used languages" />
+  <a href="https://github.com/amanxthink11">
+    <img width="49%" src="https://github-readme-stats.vercel.app/api?username=amanxthink11&show_icons=true&include_all_commits=true&hide_border=true&rank_icon=github&title_color=F59E0B&icon_color=F59E0B&text_color=24292F&bg_color=FFFFFF" alt="GitHub statistics" />
+  </a>
+  <a href="https://github.com/amanxthink11?tab=repositories">
+    <img width="49%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=amanxthink11&layout=compact&langs_count=8&hide_border=true&title_color=F59E0B&text_color=24292F&bg_color=FFFFFF" alt="Most used languages" />
+  </a>
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=amanxthink11&hide_border=true&theme=transparent&ring=F59E0B&fire=F59E0B&currStreakLabel=F59E0B" alt="GitHub contribution streak" />
+  <img width="75%" src="https://streak-stats.demolab.com?user=amanxthink11&hide_border=true&background=FFFFFF&ring=F59E0B&fire=F59E0B&currStreakLabel=F59E0B&sideLabels=24292F&dates=6B7280" alt="GitHub contribution streak" />
 </p>
 
 Contribution Activity
+<!-- Use an opaque background to avoid SVG renderer issues with transparent colors. -->
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=amanxthink11&bg_color=00000000&color=9CA3AF&line=F59E0B&point=F59E0B&area=true&hide_border=true" alt="GitHub contribution activity graph" />
+  <a href="https://github.com/amanxthink11">
+    <img width="100%" src="https://github-readme-activity-graph.vercel.app/graph?username=amanxthink11&bg_color=ffffff&color=24292f&line=f59e0b&point=f59e0b&area=true&hide_border=true" alt="GitHub contribution activity graph" />
+  </a>
 </p>
 
-GitHub Achievements
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=amanxthink11&theme=flat&no-frame=true&no-bg=true&margin-w=8&row=1" alt="GitHub profile trophies" />
-</p>
+GitHub's native contribution calendar also appears below this README on your profile. If an external analytics service is temporarily unavailable, the native calendar remains the reliable fallback.
 
 Tech I Work With
-<p>
+<p align="center">
   <img alt="TypeScript" src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" />
   <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" />
   <img alt="Next.js" src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=next.js&logoColor=white" />
