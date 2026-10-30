@@ -1,26 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --paper: #f3efe6;
-  --paper-raised: #ebe5d8;
-  --ink: #16140f;
-  --ink-muted: #4f4a42;
-  --ink-dim: #6f685c;
-  --line: #d9d1c1;
-  --accent: #c2321a;
-  color-scheme: light dark;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #13120f;
-    --paper-raised: #1d1b17;
-    --ink: #eee8dc;
-    --ink-muted: #b6ae9f;
-    --ink-dim: #918979;
-    --line: #2f2c26;
-    --accent: #ff6a4a;
-  }
+  --paper: #0a0a0b;
+  --paper-raised: #151517;
+  --ink: #f1efea;
+  --ink-muted: #a9a7a1;
+  --ink-dim: #7c7a75;
+  --line: #262628;
+  --accent: #ff5a3c;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -31,10 +19,13 @@
   --color-ink-dim: var(--ink-dim);
   --color-line: var(--line);
   --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
   --font-display: var(--font-instrument-serif), Georgia, serif;
 }
+
+/* Applies inside WorkShowcase once it has measured that the pinned layout fits the screen. */
+@custom-variant pin (&:where([data-mode="pin"], [data-mode="pin"] *));
 
 @utility container-page {
   width: 100%;
@@ -65,7 +56,8 @@ body {
   color: var(--ink);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  /* clip (not hidden) so body never becomes a scroll container, which would break position: sticky */
+  overflow-x: clip;
 }
 
 ::selection {

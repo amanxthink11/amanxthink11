@@ -5,17 +5,17 @@ function BrowserFrame({ project }: { project: FeaturedProject }) {
   const shot = project.screenshot!;
 
   return (
-    <figure className="overflow-hidden rounded-md border border-line bg-paper-raised shadow-[0_24px_60px_-30px_rgb(22_20_15/0.35)]">
+    <figure className="overflow-hidden rounded-md border border-line bg-paper-raised shadow-[0_30px_80px_-30px_rgb(0_0_0/0.9)]">
       <div className="flex items-center gap-3 border-b border-line px-4 py-2.5">
         <span aria-hidden="true" className="flex gap-1.5">
           <span className="size-2.5 rounded-full bg-ink/15" />
           <span className="size-2.5 rounded-full bg-ink/15" />
           <span className="size-2.5 rounded-full bg-ink/15" />
         </span>
-        <span className="mx-auto truncate rounded-full bg-paper px-4 py-1 font-mono text-[11px] text-ink-dim">
+        <span className="mx-auto min-w-0 truncate rounded-full bg-paper px-4 py-1 font-mono text-[11px] text-ink-dim">
           {shot.displayUrl}
         </span>
-        <span aria-hidden="true" className="w-[2.625rem]" />
+        <span aria-hidden="true" className="w-[2.625rem] shrink-0" />
       </div>
       <Image
         src={shot.src}
@@ -79,9 +79,11 @@ function ReceiptIllustration() {
         aria-hidden="true"
         className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(var(--line)_1px,transparent_1px)] [background-size:18px_18px]"
       />
+      {/* Thermal paper stays light on the dark theme, so the receipt pins its own palette. */}
       <div
         aria-hidden="true"
-        className="relative w-[13.5rem] -rotate-2 bg-paper px-5 pt-5 pb-6 font-mono text-[10px] leading-relaxed shadow-[0_24px_50px_-20px_rgb(22_20_15/0.45)] sm:w-60 sm:text-[11px]"
+        style={{ "--paper": "#f4f1ea", "--ink": "#141414", "--ink-muted": "#4a4a48", "--ink-dim": "#6c6c69" } as React.CSSProperties}
+        className="relative w-[13.5rem] -rotate-2 bg-paper text-ink px-5 pt-5 pb-6 font-mono text-[10px] leading-relaxed shadow-[0_30px_60px_-20px_rgb(0_0_0/0.8)] sm:w-60 sm:text-[11px]"
       >
         <p className="text-center font-semibold tracking-widest">TAX INVOICE</p>
         <p className="text-center text-ink-dim">Your Shop · Patna</p>

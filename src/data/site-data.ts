@@ -206,4 +206,7 @@ export const STATS = [
 
 export const TOOLKIT =["TypeScript", "Next.js", "React", "Flutter", "Dart", "PostgreSQL", "SQLite", "Prisma"];
 
-export const CLOSING_LINE = "The destination keeps changing. The desire to build doesn't.";
+// From the sign-off of Aman's GitHub profile README.
+export const MOTTO = "Build with purpose. Keep it useful. Ship it.";
+
+export const CLOSING_LINE ="The destination keeps changing. The desire to build doesn't.";

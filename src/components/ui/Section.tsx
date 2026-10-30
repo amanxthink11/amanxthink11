@@ -15,9 +15,12 @@ export default function Section({ id, index, label, title, intro, children }: Se
   return (
     <section id={id} aria-labelledby={headingId} className="scroll-mt-16 border-t border-line py-20 sm:py-28">
       <div className="container-page">
-        <div data-reveal className="grid gap-6 lg:grid-cols-12 lg:gap-12">
-          <p className="eyebrow lg:col-span-3 lg:pt-3">
-            <span className="text-accent">{index}</span> — {label}
+        <div data-reveal className="grid grid-cols-1 gap-6 lg:grid-cols-12 lg:gap-12">
+          <p className="eyebrow flex items-baseline gap-3 lg:col-span-3 lg:pt-2">
+            <span className="font-display text-3xl tracking-normal text-accent normal-case italic">
+              {index.padStart(3, "0")}
+            </span>
+            {label}
           </p>
           <div className="lg:col-span-9">
             <h2

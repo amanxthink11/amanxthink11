@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
+import { Geist_Mono, Instrument_Serif, Inter_Tight } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
 import { PROFILE, SITE_URL } from "@/data/site-data";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const interTight = Inter_Tight({
+  variable: "--font-inter-tight",
   subsets: ["latin"],
 });
 
@@ -24,10 +24,7 @@ const instrumentSerif = Instrument_Serif({
 const title = "Aman Singh — Founder & Software Engineer, Patna";
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f3efe6" },
-    { media: "(prefers-color-scheme: dark)", color: "#13120f" },
-  ],
+  themeColor: "#0a0a0b",
 };
 
 export const metadata: Metadata = {
@@ -59,20 +56,19 @@ export const metadata: Metadata = {
     siteName: PROFILE.name,
     locale: "en_IN",
     type: "profile",
-    images: [{ url: PROFILE.avatar, width: 460, height: 460, alt: `Portrait of ${PROFILE.name}` }],
+    // The share image comes from app/opengraph-image.tsx; X falls back to it too.
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title,
     description: PROFILE.description,
     creator: "@amanxthink11",
-    images: [PROFILE.avatar],
   },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN" className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}>
+    <html lang="en-IN" className={`${interTight.variable} ${geistMono.variable} ${instrumentSerif.variable}`}>
       <body>
         <JsonLd />
         {children}

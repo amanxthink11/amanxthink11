@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import LocalClock from "@/components/LocalClock";
 import { NAV_LINKS, PROFILE } from "@/data/site-data";
 
 export default function SiteNav() {
@@ -52,25 +53,40 @@ export default function SiteNav() {
       >
         Skip to content
       </a>
-      <nav aria-label="Primary" className="container-page flex h-16 items-center justify-between gap-4">
-        <a href="#top" className="shrink-0 font-display text-xl tracking-tight sm:text-2xl">
-          {PROFILE.name}
-          <span className="text-accent">.</span>
+      <div className="container-page flex h-16 items-center justify-between gap-4 text-[0.8125rem] leading-snug md:grid md:h-20 md:grid-cols-12 md:items-start md:pt-5">
+        <a href="#top" aria-label={`${PROFILE.name}, back to top`} className="font-display text-3xl leading-none italic md:col-span-3">
+          A<span className="text-accent">.</span>S
         </a>
-        <ul className="flex items-center gap-3.5 text-[0.8125rem] min-[400px]:gap-5 sm:gap-8 sm:text-sm">
-          {NAV_LINKS.map(({ id, label }) => (
-            <li key={id} className={id === "principles" ? "hidden sm:block" : undefined}>
-              <a
-                href={`#${id}`}
-                aria-current={activeId === id ? "true" : undefined}
-                className="relative py-1 text-ink-muted transition-colors hover:text-ink aria-[current]:text-ink after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:scale-x-0 after:bg-accent after:transition-transform aria-[current]:after:scale-x-100"
-              >
-                {label}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </nav>
+
+        <dl className="hidden md:col-span-3 md:block">
+          <dt className="text-ink-dim">Currently:</dt>
+          <dd>{PROFILE.role}</dd>
+        </dl>
+        <dl className="hidden md:col-span-3 md:block">
+          <dt className="text-ink-dim">Based in:</dt>
+          <dd>
+            Patna, India <LocalClock />
+          </dd>
+        </dl>
+
+        <nav aria-label="Primary" className="md:col-span-3">
+          <p className="hidden text-ink-dim md:block">Navigation:</p>
+          <ul className="flex gap-4 min-[400px]:gap-5 md:gap-x-1">
+            {NAV_LINKS.map(({ id, label }, i) => (
+              <li key={id} className={id === "principles" ? "hidden sm:block" : undefined}>
+                <a
+                  href={`#${id}`}
+                  aria-current={activeId === id ? "true" : undefined}
+                  className="text-ink-muted transition-colors hover:text-ink aria-[current]:text-accent"
+                >
+                  {label}
+                </a>
+                {i < NAV_LINKS.length - 1 && <span className="hidden text-ink-dim md:inline">,</span>}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </header>
   );
 }

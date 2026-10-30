@@ -1,3 +1,4 @@
+import CursorRing from "@/components/CursorRing";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import Contact from "@/components/sections/Contact";
 import Hero from "@/components/sections/Hero";
@@ -20,6 +21,7 @@ export default function Home() {
       </main>
       <SiteFooter />
       <RevealOnScroll />
+      <CursorRing />
     </>
   );
 }
