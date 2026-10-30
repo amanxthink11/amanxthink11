@@ -1,59 +1,54 @@
-export default function JsonLd() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://amanxthink11.com/#person",
-        "name": "Aman Singh",
-        "alternateName": ["Aman Kumar Singh"],
-        "url": "https://amanxthink11.com",
-        "image": "https://amanxthink11.com/aman.jpg",
-        "jobTitle": "Technology Entrepreneur & Founder",
-        "description":
-          "Aman Singh is a technology entrepreneur and founder from Patna, Bihar, building companies, products and technology ventures including Think11 and IND Tech Mark.",
-        "homeLocation": {
-          "@type": "Place",
-          "name": "Patna, Bihar, India",
-        },
-        "sameAs": [
-          "https://www.linkedin.com/in/amanxthink11",
-          "https://github.com/amanxthink11",
-          "https://x.com/amanxthink11",
-          "https://instagram.com/amanxthink11",
-          "https://facebook.com/amanxthink11",
-        ],
-        "worksFor": [
-          {
-            "@type": "Organization",
-            "name": "IND Tech Mark Private Limited",
-            "url": "https://indtechmark.com",
-            "sameAs": "https://www.linkedin.com/company/indtechmark",
-          },
-          {
-            "@type": "Organization",
-            "name": "Think11",
-            "url": "https://www.think11.in",
-            "sameAs": "https://www.linkedin.com/company/think11app",
-          },
-        ],
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://amanxthink11.com/#website",
-        "url": "https://amanxthink11.com",
-        "name": "Aman Singh — Founder, Builder & Technology Entrepreneur",
-        "publisher": {
-          "@id": "https://amanxthink11.com/#person",
-        },
-      },
-    ],
-  };
+import { FEATURED_PROJECTS, PROFILE, SITE_URL, SOCIALS, TOOLKIT } from "@/data/site-data";
 
+const PERSON_ID = `${SITE_URL}/#person`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": PERSON_ID,
+      name: PROFILE.name,
+      alternateName: [PROFILE.fullName, "amanxthink11"],
+      url: SITE_URL,
+      image: `${SITE_URL}${PROFILE.avatar}`,
+      email: `mailto:${PROFILE.email}`,
+      jobTitle: "Founder & Software Engineer",
+      description: PROFILE.description,
+      homeLocation: { "@type": "Place", name: PROFILE.location },
+      knowsAbout: TOOLKIT,
+      sameAs: SOCIALS.map((s) => s.url),
+      worksFor: {
+        "@type": "Organization",
+        name: "IND Tech Mark Private Limited",
+        url: "https://indtechmark.com",
+        sameAs: "https://www.linkedin.com/company/indtechmark",
+      },
+    },
+    ...FEATURED_PROJECTS.map((p) => ({
+      "@type": "SoftwareApplication",
+      name: p.name,
+      description: p.tagline,
+      url: p.primaryLink.url,
+      codeRepository: p.sourceUrl,
+      applicationCategory: "BusinessApplication",
+      author: { "@id": PERSON_ID },
+    })),
+    {
+      "@type": "WebSite",
+      "@id": `${SITE_URL}/#website`,
+      url: SITE_URL,
+      name: PROFILE.name,
+      publisher: { "@id": PERSON_ID },
+    },
+  ],
+};
+
+export default function JsonLd() {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
     />
   );
 }

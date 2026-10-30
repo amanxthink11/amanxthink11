@@ -1,405 +1,209 @@
-export interface StoryChapter {
-  number: string;
-  id: string;
-  legacyId?: string;
-  title: string;
-  shortTitle: string;
-  period?: string;
-  tagline?: string;
-}
+export const SITE_URL = "https://www.amanxthink11.com";
 
-export interface Product {
-  id: string;
-  name: string;
-  subtitle: string;
-  category: "Sports Tech" | "Utility & Finance" | "Gaming & Logic" | "Analytics & SaaS" | "Automation & Marketing";
-  status: "Published Utility" | "Published Game" | "Product Concept" | "Engineering Experiment";
-  description: string;
-  storyNote: string;
-  platform: string;
-  url?: string;
-  githubUrl?: string;
-}
+export type SocialIconName = "github" | "linkedin" | "x" | "instagram" | "facebook";
 
-export interface FounderPrinciple {
-  number: string;
-  title: string;
-  statement: string;
-  explanation: string;
-}
-
-export interface FocusArea {
-  title: string;
-  action: "Exploring" | "Building" | "Experimenting";
-  actionStyle: string;
-  dotColor: string;
-  description: string;
-}
-
-export interface Repository {
-  name: string;
-  description: string;
+export interface Social {
+  label: string;
+  handle: string;
   url: string;
-  language: string;
-  langColor: string;
+  icon: SocialIconName;
 }
 
-export const CHAPTERS: StoryChapter[] = [
-  { number: "01", id: "beginning", legacyId: "about", title: "The Beginning", shortTitle: "Beginning" },
-  { number: "02", id: "first-bet", legacyId: "ventures", title: "The First Bet", shortTitle: "First Bet", period: "2020" },
-  { number: "03", id: "building-again", legacyId: "indtechmark", title: "Building Again", shortTitle: "Building Again", period: "2021—Present" },
-  { number: "04", id: "products", legacyId: "work", title: "From Ideas to Products", shortTitle: "Products" },
-  { number: "05", id: "building-in-public", legacyId: "builder", title: "Building in Public", shortTitle: "GitHub" },
-  { number: "06", id: "things-learned", legacyId: "philosophy", title: "Things I've Learned", shortTitle: "Principles" },
-  { number: "07", id: "building-now", legacyId: "focus", title: "What I'm Building Now", shortTitle: "Now" },
-  { number: "08", id: "road-ahead", legacyId: "journey", title: "The Road Ahead", shortTitle: "Road Ahead" },
-  { number: "09", id: "message", legacyId: "gratitude", title: "A Message to the Visitor", shortTitle: "Message" },
-  { number: "10", id: "connect", legacyId: "contact", title: "Let's Connect", shortTitle: "Connect" },
+export interface FeaturedProject {
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  highlights: string[];
+  stack: string[];
+  status: string;
+  proof: string;
+  primaryLink: { label: string; url: string };
+  sourceUrl: string;
+  /** Real screenshot of the product. Projects without one get an illustration. */
+  screenshot?: { src: string; width: number; height: number; displayUrl: string };
+}
+
+export interface SideProject {
+  name: string;
+  kind: "Android app" | "Android game" | "Experiment";
+  description: string;
+  url?: string;
+}
+
+export interface Milestone {
+  year: string;
+  title: string;
+  body: string;
+  links?: { label: string; url: string }[];
+}
+
+export interface Principle {
+  title: string;
+  body: string;
+}
+
+export const PROFILE = {
+  name: "Aman Singh",
+  fullName: "Aman Kumar Singh",
+  role: "Founder, IND Tech Mark",
+  location: "Patna, Bihar, India",
+  timezone: "IST (UTC+5:30)",
+  email: "contact@amanxthink11.com",
+  avatar: "/aman.jpg",
+  interests: ["Cricket", "Chess", "Reading"],
+  description:
+    "Aman Singh is a founder and software engineer from Patna, Bihar, building open-source business software like QuickQR and Billzo through IND Tech Mark.",
+};
+
+export const NAV_LINKS = [
+  { id: "work", label: "Work" },
+  { id: "journey", label: "Journey" },
+  { id: "principles", label: "Principles" },
+  { id: "contact", label: "Contact" },
 ];
 
-export const SITE_DATA = {
-  personal: {
-    name: "Aman Singh",
-    fullName: "Aman Kumar Singh",
-    tagline: "Building ideas into reality.",
-    heroIntro:
-      "I'm Aman Singh — a founder, builder and technology entrepreneur from Patna, Bihar.",
-    location: "Patna, Bihar, India",
-    email: "contact@amanxthink11.com",
-    avatar: "/aman.jpg",
+export const SOCIALS: Social[] = [
+  { label: "GitHub", handle: "amanxthink11", url: "https://github.com/amanxthink11", icon: "github" },
+  { label: "LinkedIn", handle: "in/amanxthink11", url: "https://www.linkedin.com/in/amanxthink11", icon: "linkedin" },
+  { label: "X", handle: "@amanxthink11", url: "https://x.com/amanxthink11", icon: "x" },
+  { label: "Instagram", handle: "@amanxthink11", url: "https://www.instagram.com/amanxthink11", icon: "instagram" },
+  { label: "Facebook", handle: "amanxthink11", url: "https://www.facebook.com/amanxthink11", icon: "facebook" },
+];
+
+export const FEATURED_PROJECTS: FeaturedProject[] = [
+  {
+    slug: "quickqr",
+    name: "QuickQR",
+    tagline: "Open-source QR infrastructure for Indian businesses.",
+    description:
+      "Twelve QR generators — UPI payments, WhatsApp chat, Google reviews, menus, Wi-Fi, vCards and more — with styling, printable stand frames and a readability check before every download. Self-hostable, with dynamic links and analytics for teams that need them.",
+    highlights: [
+      "Static codes are generated in the browser, so payment and contact details never leave the device.",
+      "Dynamic short links can be re-pointed without reprinting, with scan analytics that never store raw IPs.",
+      "Multi-tenant organisations, Argon2id password hashing and a rate-limited developer API.",
+    ],
+    stack: ["Next.js 16", "TypeScript", "PostgreSQL", "Prisma", "Tailwind CSS"],
+    status: "Live",
+    proof: "MIT · 264 tests · CI",
+    primaryLink: { label: "Open QuickQR", url: "https://quickqr.amanxthink11.com" },
+    sourceUrl: "https://github.com/amanxthink11/quickqr",
+    screenshot: { src: "/work/quickqr.png", width: 2560, height: 1600, displayUrl: "quickqr.amanxthink11.com" },
   },
+  {
+    slug: "billzo",
+    name: "Billzo",
+    tagline: "Offline-first billing and accounting for small businesses.",
+    description:
+      "Desktop billing that keeps working when the internet doesn't. GST invoices, purchases, expenses, inventory and a double-entry ledger with Trial Balance, P&L and Balance Sheet built in.",
+    highlights: [
+      "GST tax invoices with UPI QR codes, printed on A4 or 58/80 mm thermal paper.",
+      "Recurring invoices, receivable/payable aging and stock valuation — all computed locally.",
+      "Money is stored as integer paise, and every backup is integrity-checked before restore.",
+    ],
+    stack: ["Flutter", "Dart", "SQLite", "Riverpod"],
+    status: "v1.0.1 · Windows",
+    proof: "MIT · 315 tests · 0 analyzer issues",
+    primaryLink: { label: "Download for Windows", url: "https://github.com/amanxthink11/billzo/releases" },
+    sourceUrl: "https://github.com/amanxthink11/billzo",
+  },
+];
 
-  socials: [
-    {
-      name: "LinkedIn",
-      handle: "in/amanxthink11",
-      url: "https://www.linkedin.com/in/amanxthink11",
-      description: "Professional updates, venture insights, and leadership thoughts",
-    },
-    {
-      name: "GitHub",
-      handle: "github.com/amanxthink11",
-      url: "https://github.com/amanxthink11",
-      description: "Open-source repositories, experiments, and code footprints",
-    },
-    {
-      name: "X (Twitter)",
-      handle: "@amanxthink11",
-      url: "https://x.com/amanxthink11",
-      description: "Real-time thoughts on technology, building, and startups",
-    },
-    {
-      name: "Instagram",
-      handle: "@amanxthink11",
-      url: "https://instagram.com/amanxthink11",
-      description: "Personal highlights, life behind the screen, and journey",
-    },
-    {
-      name: "Facebook",
-      handle: "facebook.com/amanxthink11",
-      url: "https://facebook.com/amanxthink11",
-      description: "Network, community connections, and local ecosystem",
-    },
-  ],
+// Add a Google Play `url` to an app and the list links to it automatically.
+export const SIDE_PROJECTS: SideProject[] = [
+  {
+    name: "CardLedger",
+    kind: "Android app",
+    description: "Offline score ledger for Call Break and other card games — built to end arguments at family game nights.",
+  },
+  {
+    name: "MDR Calculator",
+    kind: "Android app",
+    description: "Shows small merchants exactly what card and digital payment fees cost them on each transaction.",
+  },
+  {
+    name: "ArrowZen",
+    kind: "Android game",
+    description: "A minimalist directional-logic puzzle game. No noisy ads, no endless tutorials.",
+  },
+  {
+    name: "StumpTalk",
+    kind: "Experiment",
+    description: "Cricket scores, match insights and tournament coverage.",
+    url: "https://github.com/amanxthink11/stumptalk",
+  },
+  {
+    name: "IND Analytics",
+    kind: "Experiment",
+    description: "Privacy-focused, cookieless website analytics.",
+    url: "https://github.com/amanxthink11/ind-analytics",
+  },
+  {
+    name: "Publicity Poster",
+    kind: "Experiment",
+    description: "Marketing content and branding tools for small businesses.",
+    url: "https://github.com/amanxthink11/publicity-poster",
+  },
+];
 
-  // CHAPTER 02 — THE FIRST BET (Think11)
-  think11: {
-    name: "Think11",
+export const MILESTONES: Milestone[] = [
+  {
     year: "2020",
-    url: "https://www.think11.in",
-    linkedinUrl: "https://www.linkedin.com/company/think11app",
-    headline: "The First Bet: Sports, High-Concurrency & the Realities of Scale",
-    narrative: [
-      "Every founder remembers the first time they put something of their own on the line. In 2020, sports and digital technology were colliding across India with unprecedented velocity. Hundreds of millions of people lived and breathed cricket every evening, but the digital experience was largely spectator-only.",
-      "I wanted to build an interactive platform where game intelligence, fan intuition, and real-time engagement came together. That conviction became Think11.",
-      "Building Think11 was an unforgiving masterclass. It was my first true venture into high-concurrency architecture. When the match toss happened at 7:00 PM, hundreds of thousands of users rushed into contests in a matter of seconds. I had to learn how databases fail, how payment gateways drop transactions at peak load, how latency creates user panic, and how fraud detection must work in real time.",
-      "More than the code, Think11 taught me about entrepreneurship: recruiting engineers when you are just getting started, sitting with customer support at midnight during IPL season, listening to frustrated users, and taking absolute accountability when things break. It was the crucible that transformed me from an aspiring builder into a committed founder.",
-    ],
-    clarification:
-      "Think11 marks the foundational chapter of my founder journey. It is preserved here as a historical venture and school of hard knocks, not as an active real-money fantasy platform.",
-  },
-
-  // CHAPTER 03 — BUILDING AGAIN (IND Tech Mark)
-  indTechMark: {
-    name: "IND Tech Mark",
-    period: "2021 — Present (Incorporated Nov 28, 2023)",
-    url: "https://indtechmark.com",
-    linkedinUrl: "https://www.linkedin.com/company/indtechmark",
-    hook: "One company taught me how to start. The next taught me how to build.",
-    narrative: [
-      "Starting a company teaches you hunger; sustaining one teaches you discipline. After Think11, I knew I didn't want to build just one product. I wanted to build a technology engine that could repeatedly turn ambitious concepts into reliable, production-ready software.",
-      "In 2021, we began informal engineering operations that steadily matured into IND Tech Mark Private Limited, formally incorporated in Patna, Bihar on November 28, 2023.",
-      "IND Tech Mark is our active technology enterprise. We don't view it as a corporate services firm; we treat it as an engineering laboratory and software consultancy. On one hand, we engineer high-performance web systems, cross-platform mobile apps, cloud architectures, and automation pipelines for clients who need dependable execution. On the other hand, it serves as an incubator for our own software experiments, Android utilities, and SaaS concepts.",
-      "Building an enterprise from Patna is a deliberate statement. You do not need to be in Silicon Valley, Bengaluru, or London to build modern, robust technology. With curious minds, strict engineering standards, and persistence, world-class products can emerge from anywhere.",
-    ],
-    disciplines: [
-      "Software Engineering",
-      "Digital Products",
-      "Web Architecture",
-      "Mobile Applications",
-      "SaaS Development",
-      "Process Automation",
-      "Technology Solutions",
+    title: "Think11 — the first bet",
+    body:
+      "My first company: a fantasy sports platform for cricket and football. Match days taught me what real load looks like — everyone arrives in the minutes before the toss, and payments, databases and support all get tested at once. Think11 is no longer an active platform, but most of what I know about shipping under pressure started there.",
+    links: [
+      { label: "think11.in", url: "https://www.think11.in" },
+      { label: "Think11 on LinkedIn", url: "https://www.linkedin.com/company/think11app" },
     ],
   },
-
-  // CHAPTER 04 — FROM IDEAS TO PRODUCTS
-  products: [
-    {
-      id: "cardledger",
-      name: "CardLedger",
-      subtitle: "Precision Score Ledger for Card Games",
-      category: "Utility & Finance",
-      status: "Published Utility",
-      description:
-        "A zero-friction, offline-first round score tracking ledger designed for popular Indian card games like Call Break. Eliminates manual math disputes with real-time audit trails and round breakdowns.",
-      storyNote:
-        "Born out of family game nights where arguments over pencil-and-paper math ruined the fun. Built lean, fast, and completely usable without an internet connection.",
-      platform: "Google Play Store / Android",
-    },
-    {
-      id: "mdr-calc",
-      name: "MDR Calculator",
-      subtitle: "Merchant Discount Rate & Settlement Cost Tool",
-      category: "Utility & Finance",
-      status: "Published Utility",
-      description:
-        "Specialized financial utility that enables small merchants, shopkeepers, and businesses across India to calculate exact MDR deductions, interchange fees, and net settlement revenues on card and digital transactions.",
-      storyNote:
-        "Built after speaking with local business owners in Patna who were confused by hidden interchange cuts on POS card swipes.",
-      platform: "Google Play Store / Android",
-    },
-    {
-      id: "arrowzen",
-      name: "ArrowZen",
-      subtitle: "Minimalist Directional Logic & Spatial Puzzle Game",
-      category: "Gaming & Logic",
-      status: "Published Game",
-      description:
-        "An engaging spatial reasoning and directional logic puzzle game published on Google Play. Features progressive complexity, clean acoustics, and tactile arrow-path resolution.",
-      storyNote:
-        "An experiment in minimalist game mechanics. No noisy ads, no endless tutorials—just clean spatial logic and soothing problem solving.",
-      platform: "Google Play Store / Android",
-    },
-    {
-      id: "thinkscore",
-      name: "ThinkScore / StumpTalk",
-      subtitle: "Cricket Scoring & Match Intelligence Concept",
-      category: "Sports Tech",
-      status: "Product Concept",
-      description:
-        "A live cricket tournament scoring engine, amateur league organizer, and real-time match analytics concept built for local academies, club matches, and cricket enthusiasts.",
-      storyNote:
-        "Carrying forward the sports-tech passion from Think11 into grassroots cricket tournament administration.",
-      platform: "Product Concept & Open Source",
-      githubUrl: "https://github.com/amanxthink11/stumptalk",
-    },
-    {
-      id: "ind-analytics",
-      name: "IND Analytics",
-      subtitle: "Privacy-Focused Web Analytics Experiment",
-      category: "Analytics & SaaS",
-      status: "Engineering Experiment",
-      description:
-        "Lightweight, cookieless web analytics experiment designed to capture essential user traffic metrics without invading visitor privacy or bloating page load times.",
-      storyNote:
-        "Exploring how modern sites can measure engagement honestly without tracking scripts or GDPR compliance headaches.",
-      platform: "Engineering Experiment / GitHub",
-      githubUrl: "https://github.com/amanxthink11/ind-analytics",
-    },
-    {
-      id: "publicity-poster",
-      name: "Publicity Poster",
-      subtitle: "Marketing Automation Platform Experiment",
-      category: "Automation & Marketing",
-      status: "Engineering Experiment",
-      description:
-        "Marketing workflow experiment integrating AI generation with social channel syndication to explore automated distribution pipelines for brands.",
-      storyNote:
-        "Testing whether small teams can automate multi-channel content syndication without enterprise price tags.",
-      platform: "Engineering Experiment / GitHub",
-      githubUrl: "https://github.com/amanxthink11/publicity-poster",
-    },
-  ] as Product[],
-
-  // CHAPTER 05 — BUILDING IN PUBLIC (GitHub)
-  github: {
-    url: "https://github.com/amanxthink11",
-    tagline: "I don't just talk about building. I actually build.",
-    narrative:
-      "In a world where it's easy to make claims in slide decks, code remains the only honest proof of craftsmanship. Open source is where I document ideas, test technical architectures, and share working software with the broader developer community.",
-    repos: [
-      {
-        name: "stumptalk",
-        description: "Cricket scores, tournament intelligence, and real-time match analytics platform.",
-        language: "TypeScript",
-        langColor: "bg-blue-400",
-        url: "https://github.com/amanxthink11/stumptalk",
-      },
-      {
-        name: "ind-analytics",
-        description: "Privacy-focused, cookieless web analytics experiment for lightweight metric tracking.",
-        language: "JavaScript",
-        langColor: "bg-amber-400",
-        url: "https://github.com/amanxthink11/ind-analytics",
-      },
-      {
-        name: "publicity-poster",
-        description: "AI-powered social media poster and automated marketing syndication engine.",
-        language: "TypeScript",
-        langColor: "bg-blue-400",
-        url: "https://github.com/amanxthink11/publicity-poster",
-      },
-      {
-        name: "portfolio",
-        description: "Personal founder website, editorial digital story, and engineering showcase.",
-        language: "TypeScript",
-        langColor: "bg-blue-400",
-        url: "https://github.com/amanxthink11/portfolio",
-      },
-      {
-        name: "amanxthink11",
-        description: "Public engineering profile, open-source trajectory, and technology architecture roadmap.",
-        language: "Markdown",
-        langColor: "bg-emerald-400",
-        url: "https://github.com/amanxthink11/amanxthink11",
-      },
-    ] as Repository[],
+  {
+    year: "2021",
+    title: "Building again",
+    body:
+      "After Think11 I wanted a company that could ship more than one product. We started taking on web, mobile and automation work for clients, and built our own Android utilities alongside it.",
   },
-
-  // CHAPTER 06 — THINGS I'VE LEARNED (Founder Principles)
-  principles: [
-    {
-      number: "01",
-      title: "BUILD WITH PURPOSE",
-      statement: "Code is meaningless without a clear human problem.",
-      explanation:
-        "Don't build technology simply because the tool exists. Build because someone is struggling with a bottleneck, a calculation, or an inefficient workflow that is genuinely worth solving.",
-    },
-    {
-      number: "02",
-      title: "LEARN BY BUILDING",
-      statement: "Theory only gets you to the starting line.",
-      explanation:
-        "True comprehension happens when you deploy to real users, watch what breaks under unexpected conditions, and iterate in public. You understand systems only after you've had to fix them under pressure.",
-    },
-    {
-      number: "03",
-      title: "THINK LONG TERM",
-      statement: "Short cuts compound into fragile businesses.",
-      explanation:
-        "Hasty architectures and transactional relationships collapse quickly. Whether designing database schemas, hiring team members, or serving clients, compound value comes from steady, dependable decisions.",
-    },
-    {
-      number: "04",
-      title: "KEEP THINGS SIMPLE",
-      statement: "Complexity is easy; clarity is hard.",
-      explanation:
-        "It's tempting to add layers of abstraction, microservices, and buzzwords. The most resilient software is the one with the fewest moving parts that still completely fulfills the user's intent.",
-    },
-    {
-      number: "05",
-      title: "SHIP SOMETHING REAL",
-      statement: "An imperfect deployed tool beats a flawless mental model.",
-      explanation:
-        "Perfectionism is often fear in disguise. Ship the simplest working version, get honest feedback from actual users, and let the real world guide your roadmap.",
-    },
-  ] as FounderPrinciple[],
-
-  // CHAPTER 07 — WHAT I'M BUILDING NOW
-  focusAreas: [
-    {
-      title: "AI",
-      action: "Exploring",
-      actionStyle: "bg-purple-500/10 text-purple-400 border-purple-500/30",
-      dotColor: "bg-purple-400",
-      description:
-        "Intelligent automation, agentic workflows, and structured LLM integrations to remove tedious manual friction from daily operations.",
-    },
-    {
-      title: "SaaS",
-      action: "Building",
-      actionStyle: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
-      dotColor: "bg-emerald-400",
-      description:
-        "Multi-tenant architectures, subscription infrastructure, and high-reliability cloud software solutions for modern teams.",
-    },
-    {
-      title: "Sports Technology",
-      action: "Experimenting",
-      actionStyle: "bg-amber-500/10 text-amber-400 border-amber-500/30",
-      dotColor: "bg-amber-400",
-      description:
-        "Real-time grassroots cricket scoring engines, tournament brackets, and live telemetry data pipelines.",
-    },
-    {
-      title: "Automation",
-      action: "Experimenting",
-      actionStyle: "bg-amber-500/10 text-amber-400 border-amber-500/30",
-      dotColor: "bg-amber-400",
-      description:
-        "Automated distribution pipelines, social media syndication, and webhook-driven orchestration workflows.",
-    },
-    {
-      title: "Mobile Utilities",
-      action: "Building",
-      actionStyle: "bg-emerald-500/10 text-emerald-400 border-emerald-500/30",
-      dotColor: "bg-emerald-400",
-      description:
-        "Focused Android tools and offline-first calculators (like CardLedger and MDR Calc) solving concrete computational issues.",
-    },
-    {
-      title: "Enterprise Technology",
-      action: "Building",
-      actionStyle: "bg-[#ff4d2e]/10 text-[#ff8a65] border-[#ff4d2e]/30",
-      dotColor: "bg-[#ff4d2e]",
-      description:
-        "Full-cycle web and mobile application engineering, digital transformations, and scalable client systems via IND Tech Mark.",
-    },
-    {
-      title: "Open Source",
-      action: "Exploring",
-      actionStyle: "bg-blue-500/10 text-blue-400 border-blue-500/30",
-      dotColor: "bg-blue-400",
-      description:
-        "Contributing lightweight utilities, sharing architectural patterns, and publishing experiments on GitHub for others to build upon.",
-    },
-  ] as FocusArea[],
-
-  // CHAPTER 08 — THE ROAD AHEAD
-  roadAhead: {
-    hook: "The next chapter is still being written.",
-    narrative: [
-      "Looking back from where I started in 2020 to where I stand today, nothing about the journey has been linear. There were miscalculations, systems that failed under pressure, products that didn't take off, and bets that demanded every ounce of resolve.",
-      "I don't make speculative predictions about where the technology industry will be in five or ten years. Trends flare up and burn out. But the fundamental craft remains steady.",
-      "What I know with certainty is that I will continue to be here: writing code, testing new ideas, assembling small determined teams, and creating tools that solve real human friction points. Whether it involves autonomous agents, mobile utilities, or enterprise infrastructure, the work is always the same—take an idea, build it thoughtfully, and ship it into reality.",
+  {
+    year: "2023",
+    title: "IND Tech Mark, incorporated",
+    body:
+      "IND Tech Mark Private Limited was incorporated in Patna on 28 November 2023. Staying in Bihar is deliberate: good software doesn't need a Bengaluru address.",
+    links: [
+      { label: "indtechmark.com", url: "https://indtechmark.com" },
+      { label: "IND Tech Mark on LinkedIn", url: "https://www.linkedin.com/company/indtechmark" },
     ],
   },
-
-  // CHAPTER 09 — A MESSAGE TO THE VISITOR
-  messageToVisitor: {
-    title: "A Message to the Visitor",
-    opener: "If you've made it this far, thank you.",
-    paragraphs: [
-      "The modern internet moves at dizzying speed. Feeds demand infinite scroll, attention spans are measured in seconds, and genuine stories often get drowned in promotional noise. Taking five minutes out of your day to read my journey, my bets, and what I've learned along the way is a gesture I genuinely value.",
-      "Whether you are an aspiring engineer typing out your first scripts, a fellow founder navigating the quiet uncertainty of an early-stage company, or someone who stumbled across my corner of the web by chance—I hope something in these chapters struck a chord with you.",
-      "Building is difficult. You will doubt your decisions, wrestle with complex bugs, and face moments when walking away seems like the only rational choice. But nothing compares to the quiet satisfaction of seeing something you envisioned running in production, helping real people accomplish what they couldn't before.",
-    ],
-    closingMotto: "The destination keeps changing. The desire to build doesn't.",
-    signature: "Aman Singh",
-    signatureLocation: "Patna, Bihar, India",
+  {
+    year: "2026",
+    title: "Building in the open",
+    body:
+      "Released QuickQR and Billzo as open-source products — QR codes, billing and GST tools for the shops, cafes and clinics around me.",
+    links: [{ label: "github.com/amanxthink11", url: "https://github.com/amanxthink11" }],
   },
+];
 
-  // CHAPTER 10 — LET'S CONNECT
-  connect: {
-    title: "Let's build something.",
-    subtitle: "For partnerships, technology, products, open source, or interesting ideas.",
-    topics: [
-      "Partnerships",
-      "Technology",
-      "Products",
-      "Open Source",
-      "Interesting Ideas",
-    ],
-  },
-};
+export const PRINCIPLES: Principle[] = [
+  { title: "Build with purpose", body: "Start from a problem someone has today, not from a tool you want to try." },
+  { title: "Learn by building", body: "You only understand a system after you've had to fix it in production." },
+  { title: "Think long term", body: "Shortcuts in schemas, hiring and client work compound into fragile businesses." },
+  { title: "Keep things simple", body: "The best software has the fewest moving parts that still do the whole job." },
+  { title: "Ship something real", body: "An imperfect tool in users' hands beats a perfect plan in your head." },
+];
+
+export const NOW = [
+  { label: "QuickQR", detail: "Phase 2 — dynamic codes, scan analytics and the developer API." },
+  { label: "Billzo", detail: "Windows today, on an architecture built to reach Android." },
+  { label: "IND Tech Mark", detail: "Web, mobile and automation projects for clients." },
+  { label: "Exploring", detail: "AI-assisted workflows and developer tools." },
+];
+
+export const STATS = [
+  { value: "2020", label: "First company founded" },
+  { value: "2", label: "Open-source products" },
+  { value: "579", label: "Automated tests across them" },
+  { value: "3", label: "Android apps shipped" },
+];
+
+export const TOOLKIT =["TypeScript", "Next.js", "React", "Flutter", "Dart", "PostgreSQL", "SQLite", "Prisma"];
+
+export const CLOSING_LINE = "The destination keeps changing. The desire to build doesn't.";

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
+import { PROFILE, SITE_URL } from "@/data/site-data";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,97 +14,67 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-instrument-serif",
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+});
+
+const title = "Aman Singh — Founder & Software Engineer, Patna";
+
 export const viewport: Viewport = {
-  themeColor: "#08090d",
-  width: "device-width",
-  initialScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f3efe6" },
+    { media: "(prefers-color-scheme: dark)", color: "#13120f" },
+  ],
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amanxthink11.com"),
-  title: "Aman Singh — Founder, Builder & Technology Entrepreneur",
-  description:
-    "Aman Singh is a technology entrepreneur and founder from Patna, Bihar, building companies, products and technology ventures.",
+  metadataBase: new URL(SITE_URL),
+  title,
+  description: PROFILE.description,
   keywords: [
     "Aman Singh",
     "Aman Kumar Singh",
     "amanxthink11",
-    "Think11",
+    "QuickQR",
+    "Billzo",
     "IND Tech Mark",
-    "Patna Bihar Entrepreneur",
-    "Founder",
-    "Technology Entrepreneur",
-    "Product Builder",
-    "Sports Technology",
-    "SaaS India",
+    "Think11",
+    "Patna software engineer",
+    "Bihar founder",
   ],
-  authors: [{ name: "Aman Singh", url: "https://amanxthink11.com" }],
-  creator: "Aman Singh",
-  publisher: "Aman Singh",
-  alternates: {
-    canonical: "https://amanxthink11.com",
-  },
+  authors: [{ name: PROFILE.name, url: SITE_URL }],
+  creator: PROFILE.name,
+  alternates: { canonical: "/" },
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon.png", type: "image/png", sizes: "180x180" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
-    ],
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png", sizes: "180x180" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
-    title: "Aman Singh — Founder, Builder & Technology Entrepreneur",
-    description:
-      "Aman Singh is a technology entrepreneur and founder from Patna, Bihar, building companies, products and technology ventures.",
-    url: "https://amanxthink11.com",
-    siteName: "Aman Singh",
+    title,
+    description: PROFILE.description,
+    url: SITE_URL,
+    siteName: PROFILE.name,
     locale: "en_IN",
-    type: "website",
-    images: [
-      {
-        url: "/aman.jpg",
-        width: 460,
-        height: 460,
-        alt: "Aman Singh — Founder & Technology Entrepreneur",
-      },
-    ],
+    type: "profile",
+    images: [{ url: PROFILE.avatar, width: 460, height: 460, alt: `Portrait of ${PROFILE.name}` }],
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Aman Singh — Founder, Builder & Technology Entrepreneur",
-    description:
-      "Aman Singh is a technology entrepreneur and founder from Patna, Bihar, building companies, products and technology ventures.",
+    card: "summary",
+    title,
+    description: PROFILE.description,
     creator: "@amanxthink11",
-    images: ["/aman.jpg"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
+    images: [PROFILE.avatar],
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth`}
-    >
-      <head>
+    <html lang="en-IN" className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}>
+      <body>
         <JsonLd />
-      </head>
-      <body className="min-h-full flex flex-col bg-[#08090d] text-[#f3f4f6]">
         {children}
       </body>
     </html>
