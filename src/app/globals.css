@@ -1,84 +1,122 @@
 @import "tailwindcss";
 
+/* Street-sticker system: neon on night, paper cards, tape and LED scoreboards. */
 :root {
-  --paper: #0a0a0b;
-  --paper-raised: #151517;
-  --ink: #f1efea;
-  --ink-muted: #a9a7a1;
-  --ink-dim: #7c7a75;
-  --line: #262628;
-  --accent: #ff5a3c;
+  --night: #0b0d12;
+  --asphalt: #12151c;
+  --tray: #07080b;
+  --line: #232836;
+  --line-strong: #3b4250;
+  --chalk: #eceef3;
+  --fog: #b9bfcc;
+  --fog-2: #8a91a1;
+  --paper: #f4f1ea;
+  --paper-ink: #24262c;
+  --paper-meta: #4a4d55;
+  --yellow: #e9ff2e;
+  --pink: #ff3d8b;
+  --cyan: #22d3ff;
+  --red: #ff3b24;
+  --green: #3dff8a;
+  --lamp: #ffb12b;
   color-scheme: dark;
 }
 
 @theme inline {
-  --color-paper: var(--paper);
-  --color-paper-raised: var(--paper-raised);
-  --color-ink: var(--ink);
-  --color-ink-muted: var(--ink-muted);
-  --color-ink-dim: var(--ink-dim);
+  --color-night: var(--night);
+  --color-asphalt: var(--asphalt);
+  --color-tray: var(--tray);
   --color-line: var(--line);
-  --color-accent: var(--accent);
-  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
+  --color-line-strong: var(--line-strong);
+  --color-chalk: var(--chalk);
+  --color-fog: var(--fog);
+  --color-fog-2: var(--fog-2);
+  --color-paper: var(--paper);
+  --color-paper-ink: var(--paper-ink);
+  --color-paper-meta: var(--paper-meta);
+  --color-yellow: var(--yellow);
+  --color-pink: var(--pink);
+  --color-cyan: var(--cyan);
+  --color-red: var(--red);
+  --color-green: var(--green);
+  --color-lamp: var(--lamp);
+  --font-sans: var(--font-archivo), system-ui, sans-serif;
+  --font-sign: var(--font-bungee), var(--font-archivo), system-ui, sans-serif;
+  --font-tag: var(--font-permanent-marker), var(--font-archivo), cursive;
   --font-mono: var(--font-geist-mono), ui-monospace, monospace;
-  --font-display: var(--font-instrument-serif), Georgia, serif;
+  --shadow-sticker: 0 2px 2px rgb(0 0 0 / 0.35), 0 10px 22px -6px rgb(0 0 0 / 0.55);
+  --shadow-paper: 0 24px 40px -18px rgb(0 0 0 / 0.85);
+  --ease-slap: cubic-bezier(0.2, 1.6, 0.4, 1);
 }
-
-/* Applies inside WorkShowcase once it has measured that the pinned layout fits the screen. */
-@custom-variant pin (&:where([data-mode="pin"], [data-mode="pin"] *));
 
 @utility container-page {
   width: 100%;
-  max-width: 72rem;
+  max-width: 1320px;
   margin-inline: auto;
-  padding-inline: 1.25rem;
-
-  @media (min-width: 640px) {
-    padding-inline: 2rem;
-  }
+  padding-inline: clamp(16px, 4vw, 56px);
 }
 
-/* Same gutters as container-page but full width: for the nav and the hero's edge-to-edge name. */
-@utility container-bleed {
-  width: 100%;
-  padding-inline: 1.25rem;
-
-  @media (min-width: 640px) {
-    padding-inline: 2rem;
-  }
-}
-
-@utility eyebrow {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
+/* Small uppercase label in the sign font. */
+@utility label-sign {
+  font-family: var(--font-sign);
+  font-size: 0.6875rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
-  color: var(--ink-dim);
+}
+
+/* Huge outlined word set behind a section title. */
+@utility text-outline {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--line-strong);
+}
+
+/* A brick wall, drawn as an SVG tile: two offset courses of bricks with darker mortar. */
+@utility bg-brick {
+  background-color: #191c23;
+  background-image:
+    radial-gradient(ellipse at 50% 0%, rgb(255 177 43 / 0.08), transparent 60%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='48'%3E%3Cg fill='%230d0f14'%3E%3Crect width='96' height='3'/%3E%3Crect y='24' width='96' height='3'/%3E%3Crect width='3' height='24'/%3E%3Crect x='48' y='24' width='3' height='24'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.025'%3E%3Crect x='3' y='3' width='45' height='21'/%3E%3Crect x='51' y='27' width='45' height='21'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Diagonal yellow/black caution stripe. */
+@utility bg-hazard {
+  background-image: repeating-linear-gradient(-45deg, var(--yellow) 0 14px, var(--tray) 14px 28px);
 }
 
 html {
   scroll-behavior: smooth;
-  background: var(--paper);
+  background: var(--night);
 }
 
 body {
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--night);
+  color: var(--chalk);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-  /* clip (not hidden) so body never becomes a scroll container, which would break position: sticky */
+  /* clip (not hidden) so body never becomes a scroll container. */
   overflow-x: clip;
 }
 
+/* Film grain over everything. */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
 ::selection {
-  background: var(--accent);
-  color: var(--paper);
+  background: var(--yellow);
+  color: var(--night);
 }
 
 :focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--yellow);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* Content starts visible; it only waits for RevealOnScroll when JS runs and motion is welcome. */
@@ -88,12 +126,18 @@ body {
     translate: 0 1.5rem;
     transition:
       opacity 0.7s ease,
-      translate 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+      translate 0.7s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   [data-reveal="shown"] {
     opacity: 1;
     translate: 0 0;
+  }
+}
+
+@keyframes marquee {
+  to {
+    translate: -50% 0;
   }
 }
 
@@ -106,6 +150,7 @@ body {
   *::before,
   *::after {
     animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }

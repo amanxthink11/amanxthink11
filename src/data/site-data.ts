@@ -57,9 +57,11 @@ export const PROFILE = {
 };
 
 export const NAV_LINKS = [
+  { id: "about", label: "About" },
+  { id: "journey", label: "Innings" },
   { id: "work", label: "Work" },
-  { id: "journey", label: "Journey" },
-  { id: "principles", label: "Principles" },
+  { id: "skills", label: "Skills" },
+  { id: "principles", label: "Rules" },
   { id: "contact", label: "Contact" },
 ];
 
@@ -197,14 +199,35 @@ export const NOW = [
   { label: "Exploring", detail: "AI-assisted workflows and developer tools." },
 ];
 
-export const STATS = [
-  { value: "2020", label: "First company founded" },
-  { value: "2", label: "Open-source products" },
-  { value: "579", label: "Automated tests across them" },
-  { value: "3", label: "Android apps shipped" },
+export type Neon = "red" | "lamp" | "green" | "cyan" | "yellow" | "pink";
+
+// Scoreboard counters. `from` is where the count-up starts (a year shouldn't count up from 0).
+export const STATS: { value: number; from?: number; label: string; color: Neon }[] = [
+  { value: 2020, from: 2000, label: "First company founded", color: "red" },
+  { value: 2, label: "Open-source products", color: "lamp" },
+  { value: 579, label: "Automated tests across them", color: "green" },
+  { value: 3, label: "Android apps shipped", color: "cyan" },
 ];
 
-export const TOOLKIT =["TypeScript", "Next.js", "React", "Flutter", "Dart", "PostgreSQL", "SQLite", "Prisma"];
+// Words on the caution-tape marquee under the hero.
+export const TAPE_WORDS = ["QuickQR", "Billzo", "SaaS", "Offline-first", "UPI & GST", "Open source", "Flutter", "Next.js"];
+
+export const TOOLKIT = ["TypeScript", "Next.js", "React", "Flutter", "Dart", "PostgreSQL", "SQLite", "Prisma"];
+
+// Draggable stickers on the skills board: the toolkit, what it's used for, and life off the keyboard.
+export const SKILL_STICKERS = [
+  ...TOOLKIT,
+  "Tailwind CSS",
+  "Git",
+  "SaaS platforms",
+  "Offline-first apps",
+  "UPI & GST tooling",
+  "Developer APIs",
+  "AI-assisted workflows",
+  "Open source",
+  "Cricket",
+  "Chess",
+];
 
 // From the sign-off of Aman's GitHub profile README.
 export const MOTTO = "Build with purpose. Keep it useful. Ship it.";

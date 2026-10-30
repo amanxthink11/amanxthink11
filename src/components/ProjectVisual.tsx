@@ -5,14 +5,14 @@ function BrowserFrame({ project }: { project: FeaturedProject }) {
   const shot = project.screenshot!;
 
   return (
-    <figure className="overflow-hidden rounded-md border border-line bg-paper-raised shadow-[0_30px_80px_-30px_rgb(0_0_0/0.9)]">
-      <div className="flex items-center gap-3 border-b border-line px-4 py-2.5">
+    <figure className="overflow-hidden rounded-md border border-line bg-asphalt">
+      <div className="flex items-center gap-3 border-b border-line px-3 py-2">
         <span aria-hidden="true" className="flex gap-1.5">
-          <span className="size-2.5 rounded-full bg-ink/15" />
-          <span className="size-2.5 rounded-full bg-ink/15" />
-          <span className="size-2.5 rounded-full bg-ink/15" />
+          <span className="size-2.5 rounded-full bg-red" />
+          <span className="size-2.5 rounded-full bg-lamp" />
+          <span className="size-2.5 rounded-full bg-green" />
         </span>
-        <span className="mx-auto min-w-0 truncate rounded-full bg-paper px-4 py-1 font-mono text-[11px] text-ink-dim">
+        <span className="mx-auto min-w-0 truncate rounded-full bg-night px-4 py-1 font-mono text-[11px] text-fog-2">
           {shot.displayUrl}
         </span>
         <span aria-hidden="true" className="w-[2.625rem] shrink-0" />
@@ -22,7 +22,7 @@ function BrowserFrame({ project }: { project: FeaturedProject }) {
         width={shot.width}
         height={shot.height}
         alt={`${project.name} homepage`}
-        sizes="(min-width: 1152px) 1088px, calc(100vw - 2.5rem)"
+        sizes="(min-width: 1024px) 600px, calc(100vw - 4rem)"
         className="w-full"
       />
     </figure>
@@ -38,7 +38,7 @@ function QrGlyph() {
 
   for (let y = 0; y < size; y++) {
     for (let x = 0; x < size; x++) {
-      if (!inFinder(x, y) && ((x * 7 + y * 13 + x * y) % 5 < 2)) cells.push([x, y]);
+      if (!inFinder(x, y) && (x * 7 + y * 13 + x * y) % 5 < 2) cells.push([x, y]);
     }
   }
 
@@ -51,7 +51,7 @@ function QrGlyph() {
   );
 
   return (
-    <svg viewBox={`0 0 ${size} ${size}`} className="size-16 fill-ink" shapeRendering="crispEdges" aria-hidden="true">
+    <svg viewBox={`0 0 ${size} ${size}`} className="size-16 fill-paper-ink" shapeRendering="crispEdges" aria-hidden="true">
       {cells.map(([x, y]) => (
         <rect key={`${x}-${y}`} x={x} y={y} width="1" height="1" />
       ))}
@@ -74,20 +74,18 @@ function ReceiptIllustration() {
   ];
 
   return (
-    <figure className="relative flex items-center justify-center overflow-hidden rounded-md border border-line bg-paper-raised py-14 sm:aspect-[4/3] sm:py-0 lg:aspect-[16/10]">
+    <figure className="relative flex items-center justify-center overflow-hidden rounded-md border border-line bg-asphalt py-12 sm:aspect-[16/10] sm:py-0">
       <div
         aria-hidden="true"
-        className="absolute inset-0 opacity-[0.35] [background-image:radial-gradient(var(--line)_1px,transparent_1px)] [background-size:18px_18px]"
+        className="absolute inset-0 opacity-40 [background-image:radial-gradient(var(--line-strong)_1px,transparent_1px)] [background-size:18px_18px]"
       />
-      {/* Thermal paper stays light on the dark theme, so the receipt pins its own palette. */}
       <div
         aria-hidden="true"
-        style={{ "--paper": "#f4f1ea", "--ink": "#141414", "--ink-muted": "#4a4a48", "--ink-dim": "#6c6c69" } as React.CSSProperties}
-        className="relative w-[13.5rem] -rotate-2 bg-paper text-ink px-5 pt-5 pb-6 font-mono text-[10px] leading-relaxed shadow-[0_30px_60px_-20px_rgb(0_0_0/0.8)] sm:w-60 sm:text-[11px]"
+        className="relative w-[13.5rem] -rotate-2 bg-paper px-5 pt-5 pb-6 font-mono text-[10px] leading-relaxed text-paper-ink shadow-paper sm:w-56 sm:text-[11px]"
       >
         <p className="text-center font-semibold tracking-widest">TAX INVOICE</p>
-        <p className="text-center text-ink-dim">Your Shop · Patna</p>
-        <p className="mt-3 border-y border-dashed border-ink/30 py-2">
+        <p className="text-center text-paper-meta">Your Shop · Patna</p>
+        <p className="mt-3 border-y border-dashed border-paper-ink/30 py-2">
           {rows.map(([item, amount]) => (
             <span key={item} className="flex justify-between">
               <span>{item}</span>
@@ -95,7 +93,7 @@ function ReceiptIllustration() {
             </span>
           ))}
         </p>
-        <p className="py-2 text-ink-muted">
+        <p className="py-2 text-paper-meta">
           {taxes.map(([label, amount]) => (
             <span key={label} className="flex justify-between">
               <span>{label}</span>
@@ -103,18 +101,16 @@ function ReceiptIllustration() {
             </span>
           ))}
         </p>
-        <p className="flex justify-between border-t border-ink pt-2 text-xs font-semibold">
+        <p className="flex justify-between border-t border-paper-ink pt-2 text-xs font-semibold">
           <span>TOTAL</span>
           <span>₹383.50</span>
         </p>
         <div className="mt-4 flex flex-col items-center gap-1.5">
           <QrGlyph />
-          <span className="text-ink-dim">Pay via UPI</span>
+          <span className="text-paper-meta">Pay via UPI</span>
         </div>
       </div>
-      <figcaption className="eyebrow absolute bottom-3 left-4 text-[10px]">
-        Illustration · 80 mm thermal invoice
-      </figcaption>
+      <figcaption className="absolute bottom-3 left-4 label-sign text-[10px] text-fog-2">Illustration · 80 mm invoice</figcaption>
     </figure>
   );
 }

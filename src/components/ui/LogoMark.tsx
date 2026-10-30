@@ -18,8 +18,8 @@ interface LogoMarkProps {
 export default function LogoMark({
   className = "h-6 w-auto",
   ink = "currentColor",
-  knockout = "var(--paper)",
-  accent = "var(--accent)",
+  knockout = "var(--night)",
+  accent = "var(--red)",
 }: LogoMarkProps) {
   return (
     <svg viewBox={LOGO_VIEWBOX} className={className} aria-hidden="true" focusable="false">

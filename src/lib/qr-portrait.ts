@@ -1,5 +1,4 @@
-// Shared by the live hero canvas (PortraitField) and the generated social share image,
-// so both draw the portrait identically.
+// Draws Aman's portrait as QR-style modules for the generated social share image.
 
 // How far a cell must differ from its row's background to count as part of the subject.
 const CONTRAST_THRESHOLD = 0.07;

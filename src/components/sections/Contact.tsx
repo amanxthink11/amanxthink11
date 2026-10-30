@@ -1,62 +1,61 @@
-import { ArrowUpRight } from "lucide-react";
+import ContactQr from "@/components/ContactQr";
 import CopyEmailButton from "@/components/CopyEmailButton";
 import ExternalLink from "@/components/ui/ExternalLink";
-import Section from "@/components/ui/Section";
 import SocialIcon from "@/components/ui/SocialIcon";
-import { CLOSING_LINE, PROFILE, SOCIALS } from "@/data/site-data";
+import Tape from "@/components/ui/Tape";
+import { PROFILE, SOCIALS } from "@/data/site-data";
 
 export default function Contact() {
   return (
-    <Section
+    <section
       id="contact"
-      index="04"
-      label="Contact"
-      title="Let's build something."
-      intro="Partnerships, client work, open source or an interesting idea — email is the fastest way to reach me."
+      aria-labelledby="contact-heading"
+      className="relative mx-2 scroll-mt-20 overflow-clip rounded-3xl border border-line bg-gradient-to-b from-lamp/10 via-asphalt to-night py-24 sm:mx-4 sm:py-32"
     >
-      {/* Sans, not the italic serif: there "amanxthink11" reads as "amanxthinkll", and visitors copy this.
-          Sized in container units so the address plus arrow spans the container at any width. */}
-      <div className="@container">
-        <a
-          href={`mailto:${PROFILE.email}`}
-          className="group flex items-start gap-[0.1em] text-[7cqi] leading-none font-medium tracking-tight whitespace-nowrap transition-colors hover:text-accent"
-        >
-          {PROFILE.email}
-          <ArrowUpRight
-            aria-hidden="true"
-            className="size-[0.45em] shrink-0 text-accent transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-          />
-        </a>
-      </div>
-      <div className="mt-6 flex flex-wrap items-center gap-6">
-        <CopyEmailButton email={PROFILE.email} />
-        <p className="text-sm text-ink-dim">
-          {PROFILE.location} · {PROFILE.timezone}
-        </p>
-      </div>
+      <div className="container-page grid grid-cols-1 items-center gap-16 lg:grid-cols-12">
+        <div data-reveal className="lg:col-span-7">
+          <h2 id="contact-heading" className="font-sign text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95]">
+            Let&apos;s build <span className="font-tag text-yellow">the next one</span>?
+          </h2>
+          <p className="mt-6 max-w-lg leading-relaxed text-fog">
+            A problem nobody has solved yet? An idea stuck in a slide deck for too long? A team that needs software
+            built properly? <strong className="text-chalk">Let&apos;s talk.</strong>
+          </p>
+          {/* Sign font with flagged 1s, so "amanxthink11" can't be misread as "amanxthinkll". */}
+          <a
+            href={`mailto:${PROFILE.email}`}
+            className="mt-8 block font-sign text-[clamp(1.25rem,3.6vw,2.5rem)] break-all text-yellow transition-colors hover:text-chalk"
+          >
+            {PROFILE.email}
+          </a>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <CopyEmailButton email={PROFILE.email} />
+          </div>
+          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold text-fog">
+            {SOCIALS.map((s) => (
+              <li key={s.label}>
+                <ExternalLink href={s.url} showArrow={false} className="gap-2 transition-colors hover:text-yellow">
+                  <SocialIcon name={s.icon} className="size-4" />
+                  {s.label}
+                </ExternalLink>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-12">
-        <blockquote className="font-display text-3xl leading-snug text-ink-muted italic lg:col-span-5">
-          “{CLOSING_LINE}”
-        </blockquote>
-
-        <ul className="lg:col-span-6 lg:col-start-7">
-          {SOCIALS.map((s) => (
-            <li key={s.label} className="border-b border-line first:border-t">
-              <ExternalLink
-                href={s.url}
-                showArrow={false}
-                className="flex w-full items-center gap-4 py-4 transition-[color,padding] duration-300 hover:pl-2 hover:text-accent"
-              >
-                <SocialIcon name={s.icon} className="size-4 text-ink-muted" />
-                <span className="font-medium">{s.label}</span>
-                <span className="ml-auto font-mono text-xs text-ink-dim">{s.handle}</span>
-                <ArrowUpRight aria-hidden="true" className="size-4 text-ink-dim" />
-              </ExternalLink>
-            </li>
-          ))}
-        </ul>
+        {/* Scan-to-save sticker. */}
+        <figure data-reveal className="relative mx-auto w-full max-w-xs rotate-2 bg-paper p-5 text-paper-ink shadow-paper lg:col-span-5">
+          <Tape className="-top-3 left-1/2 -translate-x-1/2 -rotate-3" />
+          <ContactQr className="w-full" />
+          <figcaption className="mt-4 text-center">
+            <span className="block font-sign text-lg leading-tight">Scan to save my contact</span>
+            <span className="mt-1 block text-sm text-paper-meta">Point your phone camera here.</span>
+          </figcaption>
+          <span className="absolute -right-4 -bottom-4 -rotate-6 rounded-md border-2 border-tray bg-pink px-3 py-1.5 label-sign text-tray shadow-sticker">
+            QR, of course
+          </span>
+        </figure>
       </div>
-    </Section>
+    </section>
   );
 }

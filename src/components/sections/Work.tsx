@@ -1,54 +1,52 @@
 import { ArrowUpRight } from "lucide-react";
 import ProjectVisual from "@/components/ProjectVisual";
-import WorkShowcase from "@/components/WorkShowcase";
 import ExternalLink from "@/components/ui/ExternalLink";
 import Section from "@/components/ui/Section";
 import SocialIcon from "@/components/ui/SocialIcon";
-import { FEATURED_PROJECTS, SIDE_PROJECTS, type FeaturedProject } from "@/data/site-data";
+import Tape from "@/components/ui/Tape";
+import { FEATURED_PROJECTS, SIDE_PROJECTS, SOCIALS, type FeaturedProject } from "@/data/site-data";
 
-function FeaturedPanel({ project, index }: { project: FeaturedProject; index: number }) {
+const FRAME = ["border-green", "border-yellow"];
+const NOTE = ["bg-yellow", "bg-cyan", "bg-pink", "bg-green", "bg-lamp", "bg-paper"];
+const TILT = ["-rotate-2", "rotate-1", "-rotate-1", "rotate-2", "rotate-1", "-rotate-2"];
+
+function Polaroid({ project, index }: { project: FeaturedProject; index: number }) {
   return (
-    <article className="grid grid-cols-1 gap-8 pin:grid-cols-12 pin:items-center pin:gap-12">
-      <div className="pin:order-last pin:col-span-7">
+    <article
+      data-reveal
+      className={`relative bg-paper p-3 pb-6 text-paper-ink shadow-paper ${index % 2 ? "lg:mt-16 lg:rotate-[1.5deg]" : "lg:-rotate-[1.5deg]"}`}
+    >
+      <Tape className="-top-3 -left-4 -rotate-[35deg]" />
+      <Tape className="-top-3 -right-4 rotate-[35deg]" />
+      <div className={`rounded-md border-[6px] ${FRAME[index % FRAME.length]} bg-tray`}>
         <ProjectVisual project={project} />
       </div>
-
-      <div className="pin:col-span-5">
-        <h3 className="flex items-baseline gap-4 font-display text-5xl tracking-tight sm:text-6xl">
-          <span className="text-2xl text-accent italic pin:hidden">{String(index + 1).padStart(3, "0")}</span>
-          {project.name}
-        </h3>
-        <p className="mt-3 text-lg leading-snug text-ink-muted">{project.tagline}</p>
-        <p className="mt-5 leading-relaxed">{project.description}</p>
-
-        <ul className="mt-5 space-y-2 text-sm text-ink-muted">
-          {project.highlights.map((item) => (
-            <li key={item} className="flex gap-3">
-              <span aria-hidden="true" className="text-accent">
-                —
-              </span>
-              {item}
+      <div className="px-2 pt-5">
+        <div className="flex flex-wrap items-baseline justify-between gap-2">
+          <h3 className="font-sign text-3xl leading-none">{project.name}</h3>
+          <p className="label-sign text-red">{project.status}</p>
+        </div>
+        <p className="mt-2 font-bold">{project.tagline}</p>
+        <p className="mt-3 text-sm leading-relaxed text-paper-meta">{project.description}</p>
+        <ul className="mt-4 flex flex-wrap gap-1.5">
+          {project.stack.map((tech) => (
+            <li key={tech} className="rounded-full border border-paper-ink/40 px-2.5 py-0.5 text-xs font-bold">
+              {tech}
             </li>
           ))}
         </ul>
-
-        <dl className="mt-6 grid grid-cols-1 gap-3 border-t border-line pt-5 text-sm sm:grid-cols-[auto_minmax(0,1fr)] sm:gap-x-6">
-          <dt className="text-ink-dim">Status:</dt>
-          <dd>{project.status}</dd>
-          <dt className="text-ink-dim">Built with:</dt>
-          <dd>{project.stack.join(", ")}</dd>
-          <dt className="text-ink-dim">Quality:</dt>
-          <dd>{project.proof}</dd>
-        </dl>
-
-        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+        <p className="mt-3 label-sign text-[0.625rem] text-paper-meta">{project.proof}</p>
+        <div className="mt-5 flex flex-wrap gap-3">
           <ExternalLink
             href={project.primaryLink.url}
-            className="rounded-full bg-ink px-5 py-2.5 font-medium text-paper transition-colors hover:bg-accent"
+            className="rounded-lg border-2 border-paper-ink bg-yellow px-3.5 py-2 font-sign text-xs transition-transform hover:-rotate-2"
           >
             {project.primaryLink.label}
           </ExternalLink>
-          <ExternalLink href={project.sourceUrl} className="text-ink-muted transition-colors hover:text-ink">
+          <ExternalLink
+            href={project.sourceUrl}
+            className="rounded-lg border-2 border-paper-ink px-3.5 py-2 font-sign text-xs transition-transform hover:rotate-2"
+          >
             <SocialIcon name="github" className="size-3.5" />
             Source
           </ExternalLink>
@@ -59,65 +57,58 @@ function FeaturedPanel({ project, index }: { project: FeaturedProject; index: nu
 }
 
 export default function Work() {
+  const github = SOCIALS.find((s) => s.icon === "github")!;
+
   return (
     <Section
       id="work"
-      index="01"
-      label="Selected work"
-      title="Things I've shipped"
-      intro="Two open-source products I'm building now, plus the smaller apps and experiments that came before them."
+      title="Work"
+      className="mx-2 rounded-3xl bg-brick sm:mx-4"
+      intro={
+        <p className="rounded-xl bg-night/70 p-4 backdrop-blur-sm">
+          Two open-source products I&apos;m building now, plus the apps and experiments that came before them.{" "}
+          <strong className="text-chalk">Built for real shops, not slide decks.</strong>
+        </p>
+      }
     >
-      <WorkShowcase labels={FEATURED_PROJECTS.map((p) => p.name)}>
+      <div className="grid grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-12">
         {FEATURED_PROJECTS.map((project, i) => (
-          <FeaturedPanel key={project.slug} project={project} index={i} />
+          <Polaroid key={project.slug} project={project} index={i} />
         ))}
-      </WorkShowcase>
-
-      <div data-reveal className="mt-24">
-        <h3 className="eyebrow flex justify-between border-b border-ink pb-3">
-          <span>Also shipped</span>
-          <span>{String(SIDE_PROJECTS.length).padStart(3, "0")}</span>
-        </h3>
-        <ul>
-          {SIDE_PROJECTS.map((project) => {
-            const name = (
-              <>
-                {project.name}
-                {project.url && (
-                  <ArrowUpRight
-                    aria-hidden="true"
-                    className="ml-1 inline size-4 text-ink-dim transition-colors group-hover:text-accent"
-                  />
-                )}
-              </>
-            );
-            return (
-              <li
-                key={project.name}
-                className="group relative grid grid-cols-[minmax(0,1fr)_auto] items-baseline gap-x-4 gap-y-1.5 border-b border-line py-5 transition-colors hover:bg-paper-raised md:grid-cols-12 md:gap-6 md:px-3"
-              >
-                <p className="font-display text-2xl transition-transform duration-300 group-hover:translate-x-1 md:col-span-4">
-                  {project.url ? (
-                    // The stretched ::after makes the whole row clickable.
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="after:absolute after:inset-0"
-                    >
-                      {name}
-                    </a>
-                  ) : (
-                    name
-                  )}
-                </p>
-                <p className="eyebrow whitespace-nowrap md:order-last md:col-span-2 md:text-right">{project.kind}</p>
-                <p className="col-span-2 text-ink-muted md:col-span-6">{project.description}</p>
-              </li>
-            );
-          })}
-        </ul>
       </div>
+
+      <h3 data-reveal className="mt-24 font-sign text-3xl text-chalk">Also shipped</h3>
+      <ul className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {SIDE_PROJECTS.map((project, i) => (
+          <li
+            key={project.name}
+            data-reveal
+            className={`relative p-5 text-tray shadow-paper transition-transform hover:rotate-0 ${NOTE[i % NOTE.length]} ${TILT[i % TILT.length]}`}
+          >
+            <p className="label-sign text-[0.625rem] opacity-70">{project.kind}</p>
+            <p className="mt-2 font-sign text-xl leading-tight">
+              {project.url ? (
+                // The stretched ::after makes the whole note clickable.
+                <a href={project.url} target="_blank" rel="noopener noreferrer" className="after:absolute after:inset-0">
+                  {project.name}
+                  <ArrowUpRight className="ml-1 inline size-4" aria-hidden="true" />
+                </a>
+              ) : (
+                project.name
+              )}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed">{project.description}</p>
+          </li>
+        ))}
+      </ul>
+
+      <ExternalLink
+        href={github.url}
+        className="mt-12 rounded-lg border-2 border-tray bg-cyan px-4 py-3 font-sign text-sm text-tray shadow-sticker transition-transform hover:-rotate-2"
+      >
+        <SocialIcon name="github" className="size-4" />
+        Everything on GitHub
+      </ExternalLink>
     </Section>
   );
 }

@@ -1,75 +1,109 @@
-import { ArrowDown } from "lucide-react";
-import PortraitField from "@/components/PortraitField";
-import ExternalLink from "@/components/ui/ExternalLink";
-import { PROFILE, SOCIALS, STATS } from "@/data/site-data";
+import Image from "next/image";
+import { Mail } from "lucide-react";
+import LedCounter from "@/components/LedCounter";
+import Signature from "@/components/Signature";
+import SocialIcon from "@/components/ui/SocialIcon";
+import Tape from "@/components/ui/Tape";
+import TapeMarquee from "@/components/ui/TapeMarquee";
+import { PROFILE, SOCIALS, STATS, TAPE_WORDS, type Neon } from "@/data/site-data";
+
+const NEON_TEXT: Record<Neon, string> = {
+  red: "text-red",
+  lamp: "text-lamp",
+  green: "text-green",
+  cyan: "text-cyan",
+  yellow: "text-yellow",
+  pink: "text-pink",
+};
+
+const sticker = "absolute z-20 rounded-md border-2 border-tray px-3 py-1.5 label-sign text-tray shadow-sticker";
 
 export default function Hero() {
+  const github = SOCIALS.find((s) => s.icon === "github")!;
+
   return (
-    <>
-      <section id="top" className="relative flex min-h-svh flex-col justify-end overflow-hidden">
-        <PortraitField src={PROFILE.avatar} label={`Portrait of ${PROFILE.name} drawn as QR code modules`} />
-        {/* Keeps the copy readable where it overlaps the portrait. */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-paper via-paper/80 to-transparent"
-        />
+    <section id="top" className="relative overflow-clip pt-28 sm:pt-32">
+      {/* Soft neon glows behind the stickers. */}
+      <div aria-hidden="true" className="pointer-events-none absolute -top-24 left-[38%] size-72 rounded-full bg-pink/25 blur-3xl" />
+      <div aria-hidden="true" className="pointer-events-none absolute top-1/3 -right-24 size-80 rounded-full bg-yellow/15 blur-3xl" />
 
-        {/* On narrow screens, start the copy below the portrait (64px offset + size set in PortraitField). */}
-        <div className="container-bleed @container relative pt-[calc(4rem+min(105vw,50svh)+1rem)] md:pt-28">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <p className="max-w-md text-[0.9375rem] leading-relaxed text-ink-muted">
-              <span className="text-ink">I build practical software for Indian businesses.</span> Founder of IND Tech
-              Mark since 2021, after starting Think11 in 2020. Now shipping QuickQR and Billzo from Patna.
-            </p>
-
-            <div className="flex flex-wrap items-end gap-x-10 gap-y-6">
-              <dl className="text-[0.8125rem] leading-snug">
-                <dt className="text-ink-dim">Elsewhere:</dt>
-                <dd className="mt-0.5 flex flex-wrap gap-x-1">
-                  {SOCIALS.map((s, i) => (
-                    <span key={s.label}>
-                      <ExternalLink href={s.url} showArrow={false} className="transition-colors hover:text-accent">
-                        {s.label}
-                      </ExternalLink>
-                      {i < SOCIALS.length - 1 && ","}
-                    </span>
-                  ))}
-                </dd>
-              </dl>
-              <a
-                href="#work"
-                className="inline-flex items-center gap-2 rounded-full bg-ink px-5 py-2.5 text-sm font-medium text-paper transition-colors hover:bg-accent"
-              >
-                <ArrowDown className="size-4" aria-hidden="true" />
-                Explore the work
-              </a>
+      <div className="container-page relative grid grid-cols-1 items-center gap-16 lg:grid-cols-12 lg:gap-10">
+        <div className="lg:col-span-7">
+          {/* Name tag sticker, signed. */}
+          <div className="relative w-full max-w-[34rem] -rotate-3 rounded-2xl border-2 border-tray bg-red p-3 shadow-paper">
+            <p className="pt-2 text-center font-sign text-4xl leading-none text-paper sm:text-5xl">Namaste</p>
+            <p className="mt-2 text-center text-sm font-bold text-paper/85">my name is</p>
+            <div className="mt-3 grid h-48 place-items-center rounded-xl bg-paper px-4 py-1 sm:h-64">
+              <Signature thickness={3.2} duration={3} className="h-full w-auto max-w-full text-tray" />
             </div>
+            <span className={`${sticker} -top-4 -right-5 rotate-6 bg-yellow`}>579 tests</span>
           </div>
 
-          {/* Edge to edge: "Aman Singh" sets ~4.25em wide plus italic overhang, so 22.5cqi spans the
-              gutters. Bottom padding keeps the "g" descender on screen. */}
-          <h1 className="mt-4 pb-[0.14em] font-display text-[22.5cqi] leading-[0.9] whitespace-nowrap italic">
-            {PROFILE.name}
+          <h1 className="mt-12 font-sign text-[clamp(1.75rem,4vw,2.75rem)] leading-[1.05] text-chalk">
+            <span className="sr-only">{PROFILE.name}, </span>
+            Founder <span className="text-lamp">&amp;</span> product builder
           </h1>
-        </div>
-      </section>
+          <p className="mt-3 label-sign text-cyan">SaaS · Offline-first · UPI &amp; GST · Open source</p>
+          <p className="mt-5 max-w-xl leading-relaxed text-fog">
+            I build practical software for the shops, cafes and clinics around me. Founder of IND Tech Mark in Patna,
+            Bihar, since 2021, after starting Think11 in 2020. Now shipping QuickQR and Billzo in the open.
+          </p>
 
-      {/* gap-px over a line-coloured background draws the dividers between cells */}
-      <section aria-label="At a glance" className="border-y border-line">
-        <div className="container-page">
-          <dl className="grid grid-cols-2 gap-px bg-line lg:grid-cols-4">
-            {STATS.map(({ value, label }, i) => (
-              <div key={label} className="flex flex-col-reverse gap-2 bg-paper px-4 py-7 sm:px-6 sm:py-9">
-                <dt className="text-sm text-ink-muted">{label}</dt>
-                <dd className="flex items-baseline gap-3 font-display text-5xl leading-none sm:text-6xl">
-                  <span className="font-mono text-[0.6875rem] text-ink-dim">{String(i + 1).padStart(3, "0")}</span>
-                  {value}
-                </dd>
-              </div>
-            ))}
-          </dl>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <a
+              href={`mailto:${PROFILE.email}`}
+              className="inline-flex items-center gap-2 rounded-lg border-2 border-tray bg-yellow px-4 py-3 font-sign text-sm text-tray shadow-sticker transition-transform hover:-rotate-2"
+            >
+              <Mail className="size-4" aria-hidden="true" />
+              {PROFILE.email}
+            </a>
+            <a
+              href={github.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border-2 border-tray bg-green px-4 py-3 font-sign text-sm text-tray shadow-sticker transition-transform hover:rotate-2"
+            >
+              <SocialIcon name="github" className="size-4" />
+              GitHub
+            </a>
+          </div>
         </div>
-      </section>
-    </>
+
+        {/* Polaroid of Aman. */}
+        <div className="relative lg:col-span-5">
+          <figure className="relative mx-auto w-full max-w-sm rotate-3 rounded-sm bg-paper p-3 pb-16 shadow-paper">
+            <Tape className="-top-3 left-1/2 -translate-x-1/2 -rotate-2" />
+            <Image
+              src={PROFILE.avatar}
+              alt={`Portrait of ${PROFILE.name}`}
+              width={460}
+              height={460}
+              priority
+              sizes="(min-width: 1024px) 360px, 90vw"
+              className="aspect-square w-full object-cover"
+            />
+            <figcaption className="absolute right-5 bottom-4 font-tag text-2xl text-paper-ink">{PROFILE.name}</figcaption>
+            <span className={`${sticker} -left-5 bottom-24 -rotate-6 bg-pink`}>Built in Patna</span>
+            <span className={`${sticker} -top-5 -right-3 rotate-3 bg-cyan`}>Open source</span>
+          </figure>
+        </div>
+      </div>
+
+      {/* Scoreboard: gap-px over a line-coloured background draws the dividers. */}
+      <div className="container-page mt-20">
+        <dl className="grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-line bg-line lg:grid-cols-4">
+          {STATS.map(({ value, from, label, color }) => (
+            <div key={label} className="flex flex-col-reverse gap-3 bg-tray p-5 sm:p-6">
+              <dt className="label-sign text-fog-2">{label}</dt>
+              <dd className={`h-12 sm:h-14 ${NEON_TEXT[color]} [filter:drop-shadow(0_0_10px_currentColor)]`}>
+                <LedCounter value={value} from={from} className="block h-full" />
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+
+      <TapeMarquee words={TAPE_WORDS} />
+    </section>
   );
 }

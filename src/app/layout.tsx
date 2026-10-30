@@ -1,12 +1,24 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Instrument_Serif, Inter_Tight } from "next/font/google";
+import { Archivo, Bungee, Geist_Mono, Permanent_Marker } from "next/font/google";
 import JsonLd from "@/components/JsonLd";
 import { PROFILE, SITE_URL } from "@/data/site-data";
 import "./globals.css";
 
-const interTight = Inter_Tight({
-  variable: "--font-inter-tight",
+const archivo = Archivo({
+  variable: "--font-archivo",
   subsets: ["latin"],
+});
+
+const bungee = Bungee({
+  variable: "--font-bungee",
+  subsets: ["latin"],
+  weight: "400",
+});
+
+const permanentMarker = Permanent_Marker({
+  variable: "--font-permanent-marker",
+  subsets: ["latin"],
+  weight: "400",
 });
 
 const geistMono = Geist_Mono({
@@ -14,17 +26,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
-  subsets: ["latin"],
-  weight: "400",
-  style: ["normal", "italic"],
-});
-
 const title = "Aman Singh — Founder & Software Engineer, Patna";
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0b",
+  themeColor: "#0b0d12",
 };
 
 export const metadata: Metadata = {
@@ -65,7 +70,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-IN" className={`${interTight.variable} ${geistMono.variable} ${instrumentSerif.variable}`}>
+    <html
+      lang="en-IN"
+      className={`${archivo.variable} ${bungee.variable} ${permanentMarker.variable} ${geistMono.variable}`}
+    >
       <body>
         <JsonLd />
         {children}
