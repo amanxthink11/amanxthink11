@@ -3,6 +3,7 @@ import { join } from "node:path";
 import { ImageResponse } from "next/og";
 import sharp from "sharp";
 import { PROFILE } from "@/data/site-data";
+import { logoDataUrl } from "@/lib/logo-svg";
 import { moduleStyle, portraitCells } from "@/lib/qr-portrait";
 
 export const alt = `${PROFILE.name} — founder and software engineer from Patna, India`;
@@ -76,7 +77,9 @@ export default async function OpenGraphImage() {
             width: "100%",
           }}
         >
-          <div style={{ display: "flex", gap: 56, fontSize: 22 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", gap: 56, fontSize: 22 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element -- ImageResponse renders plain <img> */}
+            <img src={logoDataUrl({ size: 96, padding: 0 })} width={96} height={96} alt="" style={{ marginTop: -26 }} />
             <div style={{ display: "flex", flexDirection: "column" }}>
               <span style={{ color: "#7c7a75" }}>Currently:</span>
               <span>{PROFILE.role}</span>
@@ -90,7 +93,7 @@ export default async function OpenGraphImage() {
             <div style={{ fontFamily: "Instrument Serif", fontStyle: "italic", fontSize: 168, lineHeight: 0.9 }}>
               {PROFILE.name}
             </div>
-            <div style={{ fontSize: 30, marginTop: 24, maxWidth: 720, lineHeight: 1.3 }}>
+            <div style={{ fontSize: 30, marginTop: 24, maxWidth: 440, lineHeight: 1.3 }}>
               I build practical software for Indian businesses.
             </div>
             <div style={{ display: "flex", marginTop: 28, fontSize: 28, color: "#ff5a3c" }}>www.amanxthink11.com</div>

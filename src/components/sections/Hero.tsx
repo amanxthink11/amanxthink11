@@ -15,7 +15,7 @@ export default function Hero() {
         />
 
         {/* On narrow screens, start the copy below the portrait (64px offset + size set in PortraitField). */}
-        <div className="container-page @container relative pt-[calc(4rem+min(105vw,50svh)+1rem)] md:pt-28">
+        <div className="container-bleed @container relative pt-[calc(4rem+min(105vw,50svh)+1rem)] md:pt-28">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
             <p className="max-w-md text-[0.9375rem] leading-relaxed text-ink-muted">
               <span className="text-ink">I build practical software for Indian businesses.</span> Founder of IND Tech
@@ -46,8 +46,9 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* "Aman Singh" sets ~4.25em wide plus italic overhang, so 22cqi spans the container. */}
-          <h1 className="mt-6 -mb-[0.14em] font-display text-[22cqi] leading-[0.85] whitespace-nowrap italic">
+          {/* Edge to edge: "Aman Singh" sets ~4.25em wide plus italic overhang, so 22.5cqi spans the
+              gutters. Bottom padding keeps the "g" descender on screen. */}
+          <h1 className="mt-4 pb-[0.14em] font-display text-[22.5cqi] leading-[0.9] whitespace-nowrap italic">
             {PROFILE.name}
           </h1>
         </div>

@@ -38,6 +38,16 @@
   }
 }
 
+/* Same gutters as container-page but full width: for the nav and the hero's edge-to-edge name. */
+@utility container-bleed {
+  width: 100%;
+  padding-inline: 1.25rem;
+
+  @media (min-width: 640px) {
+    padding-inline: 2rem;
+  }
+}
+
 @utility eyebrow {
   font-family: var(--font-mono);
   font-size: 0.75rem;

@@ -1,6 +1,7 @@
 import { ArrowUp } from "lucide-react";
 import LocalClock from "@/components/LocalClock";
 import ExternalLink from "@/components/ui/ExternalLink";
+import LogoMark from "@/components/ui/LogoMark";
 import { MOTTO, PROFILE, SOCIALS } from "@/data/site-data";
 
 // Mirrors the top bar's label/value columns so the page opens and closes the same way.
@@ -8,9 +9,9 @@ export default function SiteFooter() {
   return (
     <footer className="border-t border-line">
       <div className="container-page grid grid-cols-2 gap-x-6 gap-y-8 py-12 text-[0.8125rem] leading-snug md:grid-cols-12">
-        <p className="col-span-2 font-display text-4xl leading-none italic md:col-span-3">
-          A<span className="text-accent">.</span>S
-        </p>
+        <div className="col-span-2 md:col-span-3">
+          <LogoMark className="h-10 w-auto" />
+        </div>
         <dl className="md:col-span-3">
           <dt className="text-ink-dim">Based in:</dt>
           <dd>

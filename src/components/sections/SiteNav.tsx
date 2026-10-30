@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import LocalClock from "@/components/LocalClock";
+import LogoMark from "@/components/ui/LogoMark";
 import { NAV_LINKS, PROFILE } from "@/data/site-data";
 
 export default function SiteNav() {
@@ -53,9 +54,13 @@ export default function SiteNav() {
       >
         Skip to content
       </a>
-      <div className="container-page flex h-16 items-center justify-between gap-4 text-[0.8125rem] leading-snug md:grid md:h-20 md:grid-cols-12 md:items-start md:pt-5">
-        <a href="#top" aria-label={`${PROFILE.name}, back to top`} className="font-display text-3xl leading-none italic md:col-span-3">
-          A<span className="text-accent">.</span>S
+      <div className="container-bleed flex h-16 items-center justify-between gap-4 text-[0.8125rem] leading-snug md:grid md:h-20 md:grid-cols-12 md:items-start md:pt-5">
+        <a
+          href="#top"
+          aria-label={`${PROFILE.name}, back to top`}
+          className="transition-opacity hover:opacity-80 md:col-span-3"
+        >
+          <LogoMark className="h-7 w-auto md:h-8" />
         </a>
 
         <dl className="hidden md:col-span-3 md:block">

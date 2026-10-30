@@ -45,10 +45,7 @@ export const metadata: Metadata = {
   authors: [{ name: PROFILE.name, url: SITE_URL }],
   creator: PROFILE.name,
   alternates: { canonical: "/" },
-  icons: {
-    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png", sizes: "180x180" }],
-    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
-  },
+  // Icons come from app/icon.tsx and app/apple-icon.tsx, generated from the LogoMark paths.
   openGraph: {
     title,
     description: PROFILE.description,
