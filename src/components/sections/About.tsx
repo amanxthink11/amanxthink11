@@ -6,10 +6,18 @@ const FOCUS = ["Product engineering", "SaaS platforms", "Offline-first apps", "D
 
 export default function About() {
   return (
-    <section id="about" aria-labelledby="about-heading" className="relative scroll-mt-20 py-24 sm:py-28">
+    <section
+      id="about"
+      aria-labelledby="about-heading"
+      className="relative mx-2 scroll-mt-20 rounded-3xl border border-line bg-asphalt py-20 sm:mx-4 sm:py-24"
+    >
       <div className="container-page grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
         {/* Paper card, taped to the wall. */}
-        <article data-reveal className="relative bg-paper p-7 text-paper-ink shadow-paper sm:p-10 lg:col-span-8 lg:-rotate-1">
+        {/* The gradient darkens the lower half, like paper lit from above. */}
+        <article
+          data-reveal
+          className="relative bg-paper bg-gradient-to-b from-paper from-40% to-[#d6d2c8] p-7 text-paper-ink shadow-paper sm:p-10 lg:col-span-8 lg:-rotate-1"
+        >
           <Tape className="-top-3 left-8 -rotate-6" />
           <Tape className="-top-3 right-8 rotate-6" />
           <h2 id="about-heading" className="font-sign text-[clamp(2rem,5vw,3.5rem)] leading-[0.95]">

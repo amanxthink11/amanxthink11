@@ -10,9 +10,9 @@ export default function SiteFooter() {
       <div aria-hidden="true" className="h-3 bg-hazard" />
       <div className="container-page grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-12">
         <div className="lg:col-span-5">
-          <div className="flex items-center gap-3">
-            <LogoMark className="h-9 w-auto" />
-            <span className="font-tag text-3xl text-yellow">Aman</span>
+          <div className="flex items-center gap-4">
+            <LogoMark className="h-12 w-auto" />
+            <span className="font-tag text-5xl text-yellow [text-shadow:3px_3px_0_var(--pink)]">Aman</span>
           </div>
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-fog">{MOTTO}</p>
           <p className="mt-4 text-sm text-fog-2">

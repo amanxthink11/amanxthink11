@@ -40,20 +40,21 @@ export default function SkillBoard({ skills }: { skills: string[] }) {
   };
 
   return (
-    <div data-reveal className="relative overflow-hidden rounded-2xl border border-line bg-asphalt/60 px-4 pt-16 pb-10 sm:px-10">
+    // No box: the stickers sit straight on the section's corrugated panel.
+    <div data-reveal className="relative pt-14 pb-6">
       <button
         type="button"
         onClick={() => {
           setOffsets({});
           setOrder([]);
         }}
-        className="absolute top-4 right-4 z-[60] inline-flex cursor-pointer items-center gap-2 rounded-lg border border-line-strong bg-night px-3 py-1.5 label-sign text-fog transition-colors hover:text-chalk"
+        className="absolute top-0 right-0 z-[60] inline-flex cursor-pointer items-center gap-2 rounded-lg border border-line-strong bg-night px-3 py-1.5 label-sign text-fog transition-colors hover:text-chalk"
       >
         <RotateCcw className="size-3.5" aria-hidden="true" />
         Stick them back
       </button>
 
-      <ul className="grid grid-cols-2 items-center gap-x-2 gap-y-4 sm:grid-cols-3 lg:grid-cols-5 lg:gap-y-8">
+      <ul className="mx-auto grid max-w-5xl grid-cols-2 items-center gap-x-2 gap-y-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-y-4">
         {skills.map((skill, i) => {
           const moved = offsets[i] ?? { x: 0, y: 0 };
           const nudge = jitter(i);
@@ -74,8 +75,8 @@ export default function SkillBoard({ skills }: { skills: string[] }) {
                 COLORS[i % COLORS.length]
               } ${i % 2 ? "justify-self-end" : "justify-self-start"} lg:justify-self-center ${
                 round
-                  ? "grid size-24 place-items-center rounded-full p-2 text-sm sm:size-28"
-                  : `${i % 4 === 1 ? "rounded-full" : "rounded-lg"} px-5 py-3 text-base sm:text-lg`
+                  ? "grid size-24 place-items-center rounded-full p-2 text-sm sm:size-28 lg:size-32 lg:text-base"
+                  : `${i % 4 === 1 ? "rounded-full" : "rounded-lg"} px-5 py-3 text-base sm:text-lg lg:px-6 lg:py-4 lg:text-xl`
               } ${i % 3 === 1 ? "font-tag" : "font-sign"}`}
             >
               {skill}

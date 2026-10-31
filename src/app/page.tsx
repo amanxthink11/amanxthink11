@@ -9,6 +9,8 @@ import SiteFooter from "@/components/sections/SiteFooter";
 import SiteNav from "@/components/sections/SiteNav";
 import Skills from "@/components/sections/Skills";
 import Work from "@/components/sections/Work";
+import TapeMarquee from "@/components/ui/TapeMarquee";
+import { TOOLKIT } from "@/data/site-data";
 
 export default function Home() {
   return (
@@ -19,6 +21,10 @@ export default function Home() {
         <About />
         <Journey />
         <Work />
+        {/* Paper tape bridging the Work and Skills panels. */}
+        <div className="relative z-10 -my-10">
+          <TapeMarquee words={TOOLKIT} variant="paper" />
+        </div>
         <Skills />
         <Principles />
         <Contact />
