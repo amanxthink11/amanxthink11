@@ -1,3 +1,4 @@
+import BackToTop from "@/components/BackToTop";
 import RevealOnScroll from "@/components/RevealOnScroll";
 import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
@@ -24,6 +25,7 @@ export default function Home() {
       </main>
       <SiteFooter />
       <RevealOnScroll />
+      <BackToTop />
     </>
   );
 }

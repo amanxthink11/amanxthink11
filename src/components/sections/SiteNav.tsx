@@ -67,7 +67,7 @@ export default function SiteNav() {
       <nav aria-label="Primary" className="container-page flex h-16 items-center justify-between gap-6">
         <a href="#top" aria-label={`${PROFILE.name}, back to top`} className="flex items-center gap-3">
           <LogoMark className="h-7 w-auto" />
-          <span className="hidden font-tag text-xl text-yellow sm:inline">Aman</span>
+          <span className="font-tag text-xl text-yellow">Aman</span>
         </a>
 
         <ul className="hidden items-center gap-7 lg:flex">

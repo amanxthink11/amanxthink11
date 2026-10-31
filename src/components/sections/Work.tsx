@@ -18,8 +18,15 @@ function Polaroid({ project, index }: { project: FeaturedProject; index: number 
     >
       <Tape className="-top-3 -left-4 -rotate-[35deg]" />
       <Tape className="-top-3 -right-4 rotate-[35deg]" />
-      <div className={`rounded-md border-[6px] ${FRAME[index % FRAME.length]} bg-tray`}>
+      <div className={`relative rounded-md border-[6px] ${FRAME[index % FRAME.length]} bg-tray`}>
         <ProjectVisual project={project} />
+        {/* "View project" sticker slapped on the photo's corner. */}
+        <ExternalLink
+          href={project.primaryLink.url}
+          className="absolute top-3 right-3 z-10 rotate-3 rounded-lg border-2 border-tray bg-yellow px-3 py-1.5 font-sign text-xs text-tray shadow-sticker transition-transform hover:rotate-0"
+        >
+          {project.primaryLink.label}
+        </ExternalLink>
       </div>
       <div className="px-2 pt-5">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -27,7 +34,6 @@ function Polaroid({ project, index }: { project: FeaturedProject; index: number 
           <p className="label-sign text-red">{project.status}</p>
         </div>
         <p className="mt-2 font-bold">{project.tagline}</p>
-        <p className="mt-3 text-sm leading-relaxed text-paper-meta">{project.description}</p>
         <ul className="mt-4 flex flex-wrap gap-1.5">
           {project.stack.map((tech) => (
             <li key={tech} className="rounded-full border border-paper-ink/40 px-2.5 py-0.5 text-xs font-bold">
@@ -35,18 +41,9 @@ function Polaroid({ project, index }: { project: FeaturedProject; index: number 
             </li>
           ))}
         </ul>
-        <p className="mt-3 label-sign text-[0.625rem] text-paper-meta">{project.proof}</p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <ExternalLink
-            href={project.primaryLink.url}
-            className="rounded-lg border-2 border-paper-ink bg-yellow px-3.5 py-2 font-sign text-xs transition-transform hover:-rotate-2"
-          >
-            {project.primaryLink.label}
-          </ExternalLink>
-          <ExternalLink
-            href={project.sourceUrl}
-            className="rounded-lg border-2 border-paper-ink px-3.5 py-2 font-sign text-xs transition-transform hover:rotate-2"
-          >
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <p className="label-sign text-[0.625rem] text-paper-meta">{project.proof}</p>
+          <ExternalLink href={project.sourceUrl} className="gap-1.5 font-sign text-xs transition-colors hover:text-red">
             <SocialIcon name="github" className="size-3.5" />
             Source
           </ExternalLink>
